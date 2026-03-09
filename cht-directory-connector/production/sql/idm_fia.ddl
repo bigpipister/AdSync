@@ -1,0 +1,42 @@
+-- Drop table
+
+-- DROP TABLE inidm.connector_space_ad_person_fia_details;
+
+CREATE TABLE inidm.connector_space_ad_person_fia_details (
+    employeeid varchar(256) NULL,
+    useraccountcontrol int4 NULL,
+    userparameters varchar(256) NULL,
+    sn varchar(256) NULL,
+    ou varchar(256) NULL,
+    extensionattribute1 varchar(256) NULL,
+    extensionattribute2 varchar(256) NULL,
+    accountexpires timestamptz NULL,
+    userprincipalname varchar(256) NULL,
+    samaccountname varchar(256) NULL,
+    title varchar(256) NULL,
+    department varchar(256) NULL,
+    memberof varchar(2048) NULL,
+    extensionattribute10 varchar(256) NULL,
+    extensionattribute11 varchar(256) NULL,
+    extensionattribute12 varchar(256) NULL,
+    extensionattribute13 varchar(256) NULL,
+    extensionattribute14 varchar(256) NULL,
+    extensionattribute15 varchar(256) NULL,
+    displayname varchar(256) NULL,
+    cn varchar(256) NOT NULL,
+    unicodepwd varchar(256) NULL,
+    dn varchar(256) NULL,
+    mail varchar(256) NULL,
+    objectguid varchar(256) NOT NULL,
+    unicodepwd_hash varchar(256) NULL,
+    syncattrs_hash varchar(256) NULL,
+    dn_hash varchar(256) NULL,
+    pager varchar(256) NULL,
+    pwdlastset timestamptz NULL,
+    objectclass varchar(256) NULL DEFAULT 'user'::character varying,
+    objectcategory varchar(256) NULL DEFAULT 'CN=Person,CN=Schema,CN=Configuration,DC=fia,DC=gov,DC=tw'::character varying,
+    placeholder varchar(256) NOT NULL,
+    whenchanged timestamptz NULL,
+    whencreated timestamptz NULL,
+    CONSTRAINT connector_space_ad_person_fia_details_pk PRIMARY KEY (cn, placeholder)
+);

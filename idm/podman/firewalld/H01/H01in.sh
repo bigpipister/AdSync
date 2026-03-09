@@ -1,0 +1,13 @@
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.88.136" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.90.136" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.88.101" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.88.102" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.88.105" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.88.106" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.64.15" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.64.16" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.7.145.110" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.190.4.224" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.192.4.224" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.19.102.91/24" port protocol="tcp" port="5432" accept'
+sudo firewall-cmd --reload

@@ -1,0 +1,11 @@
+[Unit]
+Description=ADWS Services (Jenkins + PostgreSQL)
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/start-podman-services.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

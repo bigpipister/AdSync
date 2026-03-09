@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - includeAll:
+      path: ../h2-sql/
+      relativeToChangelogFile: true

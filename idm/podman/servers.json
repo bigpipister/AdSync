@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "IDM DB",
+      "Group": "Servers",
+      "Host": "localhost",
+      "Port": 5432,
+      "MaintenanceDB": "idmdb",
+      "Username": "exidm",
+      "SSLMode": "prefer",
+      "Comment": "自動掛載的 PostgreSQL 伺服器設定",
+      "ConnectSettings": "SET TIME ZONE 'Asia/Taipei';"
+    }
+  }
+}

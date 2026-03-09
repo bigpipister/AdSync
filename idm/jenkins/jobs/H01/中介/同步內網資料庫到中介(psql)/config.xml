@@ -1,0 +1,102 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H/3 * * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+echo &quot;📦 開始同步資料 $(date)&quot;
+
+# 資料庫連線資訊
+SOURCE_CONN=&quot;postgresql://inidm:inidm@10.19.88.139:5432/idmdb&quot;
+TARGET_CONN=&quot;postgresql://ceidm:ceidm@localhost:5432/idmdb&quot;
+
+# Table 列表與主鍵設定
+declare -A tables
+tables=(
+  [&quot;connector_space_ad_person_details&quot;]=&quot;cn, placeholder&quot;
+  [&quot;connector_space_ad_group_details&quot;]=&quot;cn, placeholder&quot;
+  [&quot;connector_space_ad_organizationalunit_details&quot;]=&quot;ou, placeholder&quot;
+)
+
+for TABLE in &quot;${!tables[@]}&quot;; do
+  echo &quot;&quot;
+  echo &quot;🔄 處理資料表：$TABLE&quot;
+
+  PRIMARY_KEYS=&quot;${tables[$TABLE]}&quot;
+  TMP_FILE=&quot;/tmp/${TABLE}_1_sync.csv&quot;
+  STAGING_TABLE=&quot;${TABLE}_1_staging&quot;
+
+  echo &quot;📤 匯出 inner 資料...&quot;
+  PGPASSWORD=inidm psql &quot;$SOURCE_CONN&quot; -c &quot;\COPY $TABLE TO &apos;$TMP_FILE&apos; WITH CSV HEADER&quot;
+
+  echo &quot;🧪 建立 inter staging 表...&quot;
+  PGPASSWORD=ceidm psql &quot;$TARGET_CONN&quot; &lt;&lt;EOF
+DROP TABLE IF EXISTS $STAGING_TABLE;
+CREATE TABLE $STAGING_TABLE (LIKE $TABLE INCLUDING ALL);
+EOF
+
+  echo &quot;📥 匯入 CSV 至 staging 表...&quot;
+  PGPASSWORD=ceidm psql &quot;$TARGET_CONN&quot; -c &quot;\COPY $STAGING_TABLE FROM &apos;$TMP_FILE&apos; WITH CSV HEADER&quot;
+
+  echo &quot;🔁 執行 UPSERT（INSERT ON CONFLICT DO UPDATE）...&quot;
+  # 動態抓出所有欄位，產生 SET 子句
+  COLS=$(head -n 1 &quot;$TMP_FILE&quot; | tr &apos;,&apos; &apos;\n&apos; | grep -v -E &quot;^(${PRIMARY_KEYS//, /|})\$&quot; | tr &apos;\n&apos; &apos;,&apos; | sed &apos;s/,$//&apos;)
+  SET_CLAUSE=$(echo &quot;$COLS&quot; | awk -v FS=, &apos;{for (i=1; i&lt;=NF; i++) printf &quot;%s = EXCLUDED.%s%s&quot;, $i, $i, (i&lt;NF ? &quot;, &quot; : &quot;&quot;) }&apos;)
+
+  # 取得所有欄位清單（含主鍵與非主鍵）
+  ALL_COLS=$(head -n 1 &quot;$TMP_FILE&quot; | tr -d &apos;\r&apos;)
+  
+  PGPASSWORD=ceidm psql &quot;$TARGET_CONN&quot; &lt;&lt;EOF
+INSERT INTO $TABLE ($ALL_COLS)
+SELECT $ALL_COLS FROM $STAGING_TABLE
+ON CONFLICT ($PRIMARY_KEYS) DO UPDATE SET
+$SET_CLAUSE;
+EOF
+
+  echo &quot;🧹 清理 staging 表與暫存檔案...&quot;
+  PGPASSWORD=ceidm psql &quot;$TARGET_CONN&quot; -c &quot;DROP TABLE IF EXISTS $STAGING_TABLE;&quot;
+  rm -f &quot;$TMP_FILE&quot;
+
+done
+
+echo &quot;&quot;
+echo &quot;✅ 全部同步完成 $(date)&quot;
+</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.48">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>

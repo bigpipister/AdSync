@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS users (
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(250) NOT NULL,
+  hashcode VARCHAR(250) NOT NULL,
+  activetime TIMESTAMP NOT NULL,
+  ecounter INT NOT NULL,
+  status BOOLEAN NOT NULL
+);

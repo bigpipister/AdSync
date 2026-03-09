@@ -1,0 +1,51 @@
+logging:
+  level:
+    com:
+      cht:
+        directory:
+          connector: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://192.168.16.131:5432/idmdb
+    username: exidm
+    password: exidm
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: false
+    properties:
+      hibernate.format_sql: true
+      hibernate.temp.use_jdbc_metadata_defaults: false
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+  ldap:
+    host: 192.168.16.129
+    password: "1qaz@WSX"
+    port: 636
+    secure: true
+    username: CN=Administrator,CN=Users,DC=entbca,DC=gov,DC=tw
+
+activedirectory:
+  service:
+    placeholder: external
+    domaindn: "DC=entbca,DC=gov,DC=tw"
+    upndomain: "@entbca.gov.tw"
+    indomaindn: "DC=intbca,DC=gov,DC=tw"
+    inupndomain: "@intbca.gov.tw"
+    mofdn: "OU=MOF,DC=entbca,DC=gov,DC=tw"
+    targetdn: "OU=AHBDE,DC=fia,DC=gov,DC=tw"
+    removeuser:
+      enabled: true
+      maxlimit: 30

@@ -1,0 +1,75 @@
+logging:
+  level:
+    com:
+      cht:
+        directory:
+          connector: INFO
+    org:
+      springframework:
+        security: INFO
+        web: INFO
+      hibernate:
+        SQL: INFO
+    liquibase: INFO
+
+spring:
+  application:
+    name: directory_sync
+  main:
+    web-application-type: NONE
+  profiles:
+    active: dev
+  ldap:
+    pool-size: 5
+  ldap2:
+    pool-size: 5
+    host: 10.7.145.101
+    password: "P@ssw0rd"
+    port: 636
+    secure: true
+    username: cn=admin,o=system
+    enabled: false
+  liquibase:
+    enabled: false
+  datasource:
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
+  jpa:
+    properties:
+      hibernate.format_sql: true
+      hibernate.temp.use_jdbc_metadata_defaults: false
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+
+kms:
+  client:
+    jceks:
+      name: adws.jceks
+      password: 1qaz@WSX
+
+activedirectory:
+  service:
+    placeholder: inner
+    domaindn: "DC=fia,DC=gov,DC=tw"
+    mofdn: "OU=MOF,DC=fia,DC=gov,DC=tw"
+    upndomain: "@fia.gov.tw"
+    disableMailbox: true
+    organization:
+      objectclass: organizationalUnit
+      objectcategory: "CN=Organizational-Unit,CN=Schema,CN=Configuration"
+    group:
+      objectclass: group
+      objectcategory: "CN=Group,CN=Schema,CN=Configuration"
+    person:
+      objectclass: user
+      objectcategory: "CN=Person,CN=Schema,CN=Configuration"
+    excludepersonfile: "/var/jenkins_home/activedirectory_sync/excludepersonfile"
+
+exServer_ip: "127.0.0.1:3888"
+
+exchangeService:
+  enabled: false

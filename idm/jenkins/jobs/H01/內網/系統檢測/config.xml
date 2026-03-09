@@ -1,0 +1,497 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>檢測外網user是否有今日日期的密碼變更做為系統是否正常的依據&#xd;
+若異常產製內外網job狀態的html發送mail</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>3</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H 10 * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+set -euo pipefail
+
+# === DB 參數（建議改用 Jenkins Credentials 或 ~/.pgpass）===
+PGHOST=&quot;localhost&quot;
+PGPORT=&quot;5432&quot;
+PGDATABASE=&quot;idmdb&quot;
+PGUSER=&quot;inidm&quot;
+PGPASSWORD=&quot;inidm&quot;
+
+# logs 的 schema（預設 inidm；可在 Jenkins 環境覆寫）
+STATUS_SCHEMA=&quot;${STATUS_SCHEMA:-inidm}&quot;
+
+# 事件/稽核表名（如有不同可用環境變數覆寫）
+EVENTS_TABLE=&quot;${EVENTS_TABLE:-event_logs}&quot;
+AUDIT_TABLE=&quot;${AUDIT_TABLE:-audit_logs}&quot;
+
+# 健康視窗（分鐘，可覆寫，如 HEALTH_WINDOW_MIN=15）
+HEALTH_WINDOW_MIN=&quot;${HEALTH_WINDOW_MIN:-30}&quot;
+
+# 事件表取回筆數上限（避免過大，必要時可覆寫）
+EVENT_LIMIT=&quot;${EVENT_LIMIT:-50}&quot;
+
+echo &quot;🔧 Preparing queries…&quot;
+echo &quot;📦 Using schema: ${STATUS_SCHEMA}&quot;
+echo &quot;🗂️  Using events table: ${EVENTS_TABLE}&quot;
+echo &quot;🗂️  Using audit  table: ${AUDIT_TABLE}&quot;
+
+# ---------- 小工具 ----------
+run_psql() {
+  PGPASSWORD=&quot;$PGPASSWORD&quot; psql -h &quot;$PGHOST&quot; -p &quot;$PGPORT&quot; -U &quot;$PGUSER&quot; -d &quot;$PGDATABASE&quot; \
+    -v ON_ERROR_STOP=1 -q -t -A -c &quot;SET TIME ZONE &apos;Asia/Taipei&apos;; $1&quot;
+}
+
+get_col_type() {
+  local schema=&quot;$1&quot; table=&quot;$2&quot; col=&quot;$3&quot; dtype norm fqtn
+  fqtn=&quot;${schema}.${table}&quot;
+  dtype=&quot;$(run_psql &quot;SELECT data_type FROM information_schema.columns
+                      WHERE table_schema=&apos;${schema}&apos; AND table_name=&apos;${table}&apos; AND column_name=&apos;${col}&apos;
+                      LIMIT 1;&quot; | tr -d &apos;\r&apos;)&quot;
+  if [[ -z &quot;${dtype:-}&quot; ]]; then
+    dtype=&quot;$(run_psql &quot;SELECT pg_typeof(${col})::text FROM ${fqtn} LIMIT 1;&quot; | tr -d &apos;\r&apos;)&quot;
+  fi
+  norm=&quot;$(echo &quot;${dtype:-}&quot; | tr -d &apos;[:space:]&apos; | tr &apos;A-Z&apos; &apos;a-z&apos;)&quot;
+  case &quot;$norm&quot; in
+    timestampwithtimezone|timestamptz) echo &quot;tstz&quot; ;;
+    timestampwithouttimezone|timestamp|timestampwo*time*) echo &quot;ts&quot; ;;
+    *) echo &quot;ts&quot; ;;
+  esac
+}
+
+html_escape() {
+  local s=${1//&amp;/&amp;amp;}
+  s=${s//&lt;/&amp;lt;}
+  s=${s//&gt;/&amp;gt;}
+  s=${s//\&quot;/&amp;quot;}
+  printf &apos;%s&apos; &quot;$s&quot;
+}
+
+# 先做 HTML 轉義，再把 [[BR]] 還原為 &lt;br&gt;（避免被 while 切行）
+escape_with_br() {
+  local s; s=&quot;$(html_escape &quot;$1&quot;)&quot;
+  s=&quot;${s//\[\[BR\]\]/&lt;br&gt;}&quot;
+  printf &apos;%s&apos; &quot;$s&quot;
+}
+
+# ---------- 解析完整表名 ----------
+STATUS_FQTN=&quot;${STATUS_SCHEMA}.status_logs&quot;
+EVENTS_FQTN=&quot;${STATUS_SCHEMA}.${EVENTS_TABLE}&quot;
+AUDIT_FQTN=&quot;${STATUS_SCHEMA}.${AUDIT_TABLE}&quot;
+
+# ---------- 型別偵測 ----------
+PWDLASTSET_TYPE=&quot;$(get_col_type &quot;inidm&quot;           &quot;connector_space_ad_person_sync_details&quot; &quot;pwdlastset&quot;)&quot;
+STARTDT_TYPE=&quot;$(get_col_type   &quot;${STATUS_SCHEMA}&quot; &quot;status_logs&quot;                             &quot;startdatetime&quot;)&quot;
+EVENT_ACTDT_TYPE=&quot;$(get_col_type &quot;${STATUS_SCHEMA}&quot; &quot;${EVENTS_TABLE}&quot;                       &quot;activitydatetime&quot;)&quot;
+AUDIT_ACTDT_TYPE=&quot;$(get_col_type &quot;${STATUS_SCHEMA}&quot; &quot;${AUDIT_TABLE}&quot;                       &quot;activitydatetime&quot;)&quot;
+
+# ---------- 今天密碼變更筆數 ----------
+if [[ &quot;$PWDLASTSET_TYPE&quot; == &quot;ts&quot; ]]; then
+  COUNT_SQL=&quot;
+    WITH bounds AS (
+      SELECT ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date)::timestamp AS start_ts,
+             (((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date + 1)::timestamp) AS end_ts
+    )
+    SELECT COUNT(*)::text
+    FROM inidm.connector_space_ad_person_sync_details, bounds
+    WHERE pwdlastset &gt;= start_ts AND pwdlastset &lt; end_ts;
+  &quot;
+else
+  COUNT_SQL=&quot;
+    WITH bounds AS (
+      SELECT
+        (date_trunc(&apos;day&apos;,  now() AT TIME ZONE &apos;Asia/Taipei&apos;)                         AT TIME ZONE &apos;Asia/Taipei&apos;) AS start_tstz,
+        (date_trunc(&apos;day&apos;, (now() AT TIME ZONE &apos;Asia/Taipei&apos;) + interval &apos;1 day&apos;)    AT TIME ZONE &apos;Asia/Taipei&apos;) AS end_tstz
+    )
+    SELECT COUNT(*)::text
+    FROM inidm.connector_space_ad_person_sync_details, bounds
+    WHERE pwdlastset &gt;= start_tstz AND pwdlastset &lt; end_tstz;
+  &quot;
+fi
+
+echo &quot;🔍 Checking pwdlastset (Asia/Taipei) on $(date)&quot;
+COUNT=&quot;$(run_psql &quot;$COUNT_SQL&quot; | tr -d &apos;[:space:]&apos;)&quot;
+COUNT=&quot;${COUNT:-0}&quot;
+echo &quot;今天已有 ${COUNT} 筆使用者密碼變更記錄&quot;
+
+# ---------- 健康狀態（status_logs） ----------
+if [[ &quot;$STARTDT_TYPE&quot; == &quot;ts&quot; ]]; then
+  STATUS_SQL=&quot;
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      dn,
+      displayname,
+      to_char(startdatetime, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS start_tw,
+      CASE WHEN COALESCE(health, &apos;&apos;) = &apos;Y&apos; THEN &apos;正常&apos; ELSE &apos;異常&apos; END AS op_status_label,
+      CASE
+        WHEN ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::timestamp - startdatetime) &gt; interval &apos;${HEALTH_WINDOW_MIN} minutes&apos;
+          THEN &apos;異常&apos;
+        ELSE &apos;正常&apos;
+      END AS time_health_label
+    FROM ${STATUS_FQTN}
+    ORDER BY region_label, dn, displayname, startdatetime DESC;
+  &quot;
+else
+  STATUS_SQL=&quot;
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      dn,
+      displayname,
+      to_char(startdatetime AT TIME ZONE &apos;Asia/Taipei&apos;, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS start_tw,
+      CASE WHEN COALESCE(health, &apos;&apos;) = &apos;Y&apos; THEN &apos;正常&apos; ELSE &apos;異常&apos; END AS op_status_label,
+      CASE
+        WHEN (now() - startdatetime) &gt; interval &apos;${HEALTH_WINDOW_MIN} minutes&apos;
+          THEN &apos;異常&apos;
+        ELSE &apos;正常&apos;
+      END AS time_health_label
+    FROM ${STATUS_FQTN}
+    ORDER BY region_label, dn, displayname, startdatetime DESC;
+  &quot;
+fi
+
+STATUS_ROWS=&quot;$(
+  PGPASSWORD=&quot;$PGPASSWORD&quot; psql -h &quot;$PGHOST&quot; -p &quot;$PGPORT&quot; -U &quot;$PGUSER&quot; -d &quot;$PGDATABASE&quot; \
+    -v ON_ERROR_STOP=1 -q -t -A -F $&apos;\t&apos; \
+    -c &quot;SET TIME ZONE &apos;Asia/Taipei&apos;; $STATUS_SQL&quot;
+)&quot;
+
+# ---------- 事件紀錄（events）：把換行改成 [[BR]] ----------
+if [[ &quot;$EVENT_ACTDT_TYPE&quot; == &quot;ts&quot; ]]; then
+  EVENTS_SQL=&quot;
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      dn,
+      jobname,
+      to_char(activitydatetime, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS act_tw,
+      REPLACE(REPLACE(COALESCE(exceptioncontent,&apos;&apos;), E&apos;\r\n&apos;, E&apos;\n&apos;), E&apos;\n&apos;, &apos;[[BR]]&apos;) AS exceptioncontent
+    FROM ${EVENTS_FQTN}
+    ORDER BY activitydatetime DESC
+    LIMIT ${EVENT_LIMIT};
+  &quot;
+else
+  EVENTS_SQL=&quot;
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      dn,
+      jobname,
+      to_char(activitydatetime AT TIME ZONE &apos;Asia/Taipei&apos;, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS act_tw,
+      REPLACE(REPLACE(COALESCE(exceptioncontent,&apos;&apos;), E&apos;\r\n&apos;, E&apos;\n&apos;), E&apos;\n&apos;, &apos;[[BR]]&apos;) AS exceptioncontent
+    FROM ${EVENTS_FQTN}
+    ORDER BY activitydatetime DESC
+    LIMIT ${EVENT_LIMIT};
+  &quot;
+fi
+
+EVENTS_ROWS=&quot;$(
+  PGPASSWORD=&quot;$PGPASSWORD&quot; psql -h &quot;$PGHOST&quot; -p &quot;$PGPORT&quot; -U &quot;$PGUSER&quot; -d &quot;$PGDATABASE&quot; \
+    -v ON_ERROR_STOP=1 -q -t -A -F $&apos;\t&apos; \
+    -c &quot;SET TIME ZONE &apos;Asia/Taipei&apos;; $EVENTS_SQL&quot;
+)&quot;
+
+# ---------- 稽核紀錄（audit：昨天；把換行改成 [[BR]]） ----------
+if [[ &quot;$AUDIT_ACTDT_TYPE&quot; == &quot;ts&quot; ]]; then
+  AUDIT_SQL=&quot;
+    WITH bounds AS (
+      SELECT
+        ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date - 1)::timestamp AS start_ts,
+        ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date)::timestamp     AS end_ts
+    )
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      activitydisplayname,
+      to_char(activitydatetime, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS occ_tw,
+      REPLACE(REPLACE(COALESCE(additionaldetails,&apos;&apos;), E&apos;\r\n&apos;, E&apos;\n&apos;), E&apos;\n&apos;, &apos;[[BR]]&apos;) AS details
+    FROM ${AUDIT_FQTN}, bounds
+    WHERE activitydatetime &gt;= start_ts AND activitydatetime &lt; end_ts
+    ORDER BY activitydatetime DESC;
+  &quot;
+  AUDIT_COUNT_SQL=&quot;
+    WITH bounds AS (
+      SELECT
+        ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date - 1)::timestamp AS start_ts,
+        ((now() AT TIME ZONE &apos;Asia/Taipei&apos;)::date)::timestamp     AS end_ts
+    )
+    SELECT COUNT(*)::text
+    FROM ${AUDIT_FQTN}, bounds
+    WHERE activitydatetime &gt;= start_ts AND activitydatetime &lt; end_ts;
+  &quot;
+else
+  AUDIT_SQL=&quot;
+    WITH bounds AS (
+      SELECT
+        (date_trunc(&apos;day&apos;, (now() AT TIME ZONE &apos;Asia/Taipei&apos;) - interval &apos;1 day&apos;) AT TIME ZONE &apos;Asia/Taipei&apos;) AS start_tstz,
+        (date_trunc(&apos;day&apos;,  (now() AT TIME ZONE &apos;Asia/Taipei&apos;))                   AT TIME ZONE &apos;Asia/Taipei&apos;) AS end_tstz
+    )
+    SELECT
+      CASE WHEN region=&apos;inner&apos; THEN &apos;內網&apos;
+           WHEN region=&apos;external&apos; THEN &apos;外網&apos;
+           ELSE region END AS region_label,
+      activitydisplayname,
+      to_char(activitydatetime AT TIME ZONE &apos;Asia/Taipei&apos;, &apos;YYYY-MM-DD HH24:MI:SS&apos;) AS occ_tw,
+      REPLACE(REPLACE(COALESCE(additionaldetails,&apos;&apos;), E&apos;\r\n&apos;, E&apos;\n&apos;), E&apos;\n&apos;, &apos;[[BR]]&apos;) AS details
+    FROM ${AUDIT_FQTN}, bounds
+    WHERE activitydatetime &gt;= start_tstz AND activitydatetime &lt; end_tstz
+    ORDER BY activitydatetime DESC;
+  &quot;
+  AUDIT_COUNT_SQL=&quot;
+    WITH bounds AS (
+      SELECT
+        (date_trunc(&apos;day&apos;, (now() AT TIME ZONE &apos;Asia/Taipei&apos;) - interval &apos;1 day&apos;) AT TIME ZONE &apos;Asia/Taipei&apos;) AS start_tstz,
+        (date_trunc(&apos;day&apos;,  (now() AT TIME ZONE &apos;Asia/Taipei&apos;))                   AT TIME ZONE &apos;Asia/Taipei&apos;) AS end_tstz
+    )
+    SELECT COUNT(*)::text
+    FROM ${AUDIT_FQTN}, bounds
+    WHERE activitydatetime &gt;= start_tstz AND activitydatetime &lt; end_tstz;
+  &quot;
+fi
+
+AUDIT_COUNT=&quot;$(run_psql &quot;$AUDIT_COUNT_SQL&quot; | tr -d &apos;[:space:]&apos;)&quot;
+AUDIT_COUNT=&quot;${AUDIT_COUNT:-0}&quot;
+echo &quot;🧾 稽核紀錄（昨天）筆數：${AUDIT_COUNT}&quot;
+
+AUDIT_ROWS=&quot;$(
+  PGPASSWORD=&quot;$PGPASSWORD&quot; psql -h &quot;$PGHOST&quot; -p &quot;$PGPORT&quot; -U &quot;$PGUSER&quot; -d &quot;$PGDATABASE&quot; \
+    -v ON_ERROR_STOP=1 -q -t -A -F $&apos;\t&apos; \
+    -c &quot;SET TIME ZONE &apos;Asia/Taipei&apos;; $AUDIT_SQL&quot;
+)&quot;
+
+# ---------- 密碼變更筆數：0 ⇒ 整段紅字 ----------
+if [[ &quot;$COUNT&quot; == &quot;0&quot; ]]; then
+  COUNT_LINE_HTML=&apos;&lt;p class=&quot;bad&quot;&gt;今天密碼變更筆數：0 -&gt; 請確認此狀況是否正常&lt;/p&gt;&apos;
+else
+  COUNT_LINE_HTML=&quot;&lt;p&gt;今天密碼變更筆數：&lt;strong&gt;${COUNT}&lt;/strong&gt;&lt;/p&gt;&quot;
+fi
+
+# ---------- 產生 email.html ----------
+cat &gt; email.html &lt;&lt;EOF
+&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-Hant&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;IDM 帳號同步檢測&lt;/title&gt;
+    &lt;style&gt;
+      body { font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Inter,&quot;Noto Sans TC&quot;,Arial,&quot;Microsoft JhengHei&quot;,sans-serif; line-height:1.6; }
+      table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+      th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+      th { background: #f7f7f7; }
+      .ok { color: #1565c0; font-weight: 600; }
+      .bad { color: #c62828; font-weight: 700; }
+      .muted { color: #666; }
+      td.dn { word-break: break-all; }
+      td.prewrap { white-space: pre-wrap; word-break: break-word; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h3&gt;IDM 帳號同步檢測&lt;/h3&gt;
+    ${COUNT_LINE_HTML}
+    &lt;p class=&quot;muted&quot;&gt;
+      Schema：&lt;code&gt;${STATUS_SCHEMA}&lt;/code&gt; ｜ Events Table：&lt;code&gt;${EVENTS_TABLE}&lt;/code&gt; ｜ Audit Table：&lt;code&gt;${AUDIT_TABLE}&lt;/code&gt; ｜ 
+      Job：${JOB_NAME:-N/A} #${BUILD_NUMBER:-N/A} ｜ 主控台：&lt;a href=&quot;${BUILD_URL:-#}console&quot;&gt;${BUILD_URL:-#}console&lt;/a&gt;
+    &lt;/p&gt;
+
+    &lt;h4&gt;健康狀態一覽（健康門檻：&gt;${HEALTH_WINDOW_MIN} 分鐘）&lt;/h4&gt;
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;場域&lt;/th&gt;
+          &lt;th&gt;DN&lt;/th&gt;
+          &lt;th&gt;作業名稱&lt;/th&gt;
+          &lt;th&gt;最近執行時間（台北）&lt;/th&gt;
+          &lt;th&gt;最後運行狀態&lt;/th&gt;
+          &lt;th&gt;超時狀態&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+EOF
+
+# 健康狀態表格
+while IFS=$&apos;\t&apos; read -r REGION_LABEL DN DISPLAY STARTTW OPSTATUS TIME_STATUS; do
+  [[ -z &quot;${REGION_LABEL}${DN}${DISPLAY}${STARTTW}${OPSTATUS}${TIME_STATUS}&quot; ]] &amp;&amp; continue
+  OP_CLASS=&quot;ok&quot;;   [[ &quot;$OPSTATUS&quot;    == &quot;異常&quot; ]] &amp;&amp; OP_CLASS=&quot;bad&quot;
+  TIME_CLASS=&quot;ok&quot;; [[ &quot;$TIME_STATUS&quot; == &quot;異常&quot; ]] &amp;&amp; TIME_CLASS=&quot;bad&quot;
+  {
+    echo &quot;        &lt;tr&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$REGION_LABEL&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;dn\&quot;&gt;$(html_escape &quot;$DN&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$DISPLAY&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$STARTTW&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;$OP_CLASS\&quot;&gt;$(html_escape &quot;$OPSTATUS&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;$TIME_CLASS\&quot;&gt;$(html_escape &quot;$TIME_STATUS&quot;)&lt;/td&gt;&quot;
+    echo &quot;        &lt;/tr&gt;&quot;
+  } &gt;&gt; email.html
+done &lt;&lt;&lt; &quot;$STATUS_ROWS&quot;
+
+# 事件紀錄表
+cat &gt;&gt; email.html &lt;&lt;&apos;EOF&apos;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;h4&gt;事件紀錄&lt;/h4&gt;
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;場域&lt;/th&gt;
+          &lt;th&gt;DN&lt;/th&gt;
+          &lt;th&gt;作業名稱&lt;/th&gt;
+          &lt;th&gt;作業時間（台北）&lt;/th&gt;
+          &lt;th&gt;異常內容&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+EOF
+
+EVENTS_ANY=0
+while IFS=$&apos;\t&apos; read -r E_REGION E_DN E_JOB E_TIME E_EX; do
+  [[ -z &quot;${E_REGION}${E_DN}${E_JOB}${E_TIME}${E_EX}&quot; ]] &amp;&amp; continue
+  EVENTS_ANY=1
+  {
+    echo &quot;        &lt;tr&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$E_REGION&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;dn\&quot;&gt;$(html_escape &quot;$E_DN&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$E_JOB&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$E_TIME&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;prewrap\&quot;&gt;$(escape_with_br &quot;$E_EX&quot;)&lt;/td&gt;&quot;
+    echo &quot;        &lt;/tr&gt;&quot;
+  } &gt;&gt; email.html
+done &lt;&lt;&lt; &quot;$EVENTS_ROWS&quot;
+
+if [[ &quot;$EVENTS_ANY&quot; -eq 0 ]]; then
+  {
+    echo &quot;        &lt;tr&gt;&quot;
+    echo &quot;          &lt;td&gt;&lt;/td&gt;&lt;td class=\&quot;dn\&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td class=\&quot;prewrap\&quot;&gt;&lt;/td&gt;&quot;
+    echo &quot;        &lt;/tr&gt;&quot;
+  } &gt;&gt; email.html
+fi
+
+# 稽核紀錄表（昨天）
+cat &gt;&gt; email.html &lt;&lt;&apos;EOF&apos;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;h4&gt;稽核紀錄（昨天）&lt;/h4&gt;
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;場域&lt;/th&gt;
+          &lt;th&gt;作業名稱&lt;/th&gt;
+          &lt;th&gt;發生時間（台北）&lt;/th&gt;
+          &lt;th&gt;作業內容&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+EOF
+
+AUDIT_ANY=0
+while IFS=$&apos;\t&apos; read -r A_REGION A_NAME A_TIME A_DETAILS; do
+  [[ -z &quot;${A_REGION}${A_NAME}${A_TIME}${A_DETAILS}&quot; ]] &amp;&amp; continue
+  AUDIT_ANY=1
+  {
+    echo &quot;        &lt;tr&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$A_REGION&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$A_NAME&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td&gt;$(html_escape &quot;$A_TIME&quot;)&lt;/td&gt;&quot;
+    echo &quot;          &lt;td class=\&quot;prewrap\&quot;&gt;$(escape_with_br &quot;$A_DETAILS&quot;)&lt;/td&gt;&quot;
+    echo &quot;        &lt;/tr&gt;&quot;
+  } &gt;&gt; email.html
+done &lt;&lt;&lt; &quot;$AUDIT_ROWS&quot;
+
+if [[ &quot;$AUDIT_ANY&quot; -eq 0 ]]; then
+  {
+    echo &quot;        &lt;tr&gt;&quot;
+    echo &quot;          &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td class=\&quot;prewrap\&quot;&gt;&lt;/td&gt;&quot;
+    echo &quot;        &lt;/tr&gt;&quot;
+  } &gt;&gt; email.html
+fi
+
+cat &gt;&gt; email.html &lt;&lt;&apos;EOF&apos;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+EOF
+
+if [[ &quot;$COUNT&quot; == &quot;0&quot; ]]; then
+  echo &quot;❌ 今天沒有任何使用者密碼變更記錄，將結束為失敗以觸發通知。&quot;
+  exit 1
+else
+  echo &quot;✅ 今天已有 ${COUNT} 筆 pwdlastset 記錄，已產出 email.html。&quot;
+fi
+</command>
+      <configuredLocalRules/>
+      <unstableReturn>1</unstableReturn>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@1861.vdb_d991590994">
+      <recipientList>bigpipister@gmail.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>text/html</contentType>
+      <defaultSubject>IDM帳號同步檢測</defaultSubject>
+      <defaultContent>${FILE,path=&quot;email.html&quot;}</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo></replyTo>
+      <from>idm@cht.com.tw</from>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+      <throttlingEnabled>false</throttlingEnabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.48">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>

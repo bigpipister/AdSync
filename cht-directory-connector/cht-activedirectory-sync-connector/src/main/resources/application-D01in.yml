@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/idmdb
+    username: inidm
+    password: inidm
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: false
+    properties:
+      hibernate.format_sql: true
+      hibernate.temp.use_jdbc_metadata_defaults: false
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+  ldap:
+    host: 10.27.88.105
+    password: "P@ssw0rd%^&*"
+    port: 636
+    secure: true
+    username: CN=D01IDMAdmin2,OU=ap,DC=ntbsa,DC=gov,DC=tw
+
+activedirectory:
+  service:
+    placeholder: inner
+    domaindn: "DC=ntbsa,DC=gov,DC=tw"
+    upndomain: "@ntbsa.gov.tw"
+    mofdn: "OU=MOF,DC=ntbsa,DC=gov,DC=tw"
+    targetdn: "OU=AHBDE,DC=fia,DC=gov,DC=tw"
+    removeuser:
+      enabled: true
+      maxlimit: 300
+
+exchangeService:
+  enabled: false
+exServer_ip: "10.27.88.101:3888"

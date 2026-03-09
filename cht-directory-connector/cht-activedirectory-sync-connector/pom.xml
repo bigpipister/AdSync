@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>directory-connector-parent</artifactId>
+        <groupId>com.cht.directory.connector</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>cht-activedirectory-sync-connector</artifactId>
+    <version>1.0</version>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.cht.directory.connector</groupId>
+            <artifactId>cht-directory-connector-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <!-- NMAS jars (not available from a maven repo) -->
+        <dependency>
+            <groupId>com.novell.security.nmas</groupId>
+            <artifactId>ChallengeResponseLCM</artifactId>
+            <version>2013.04.18</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.novell.security.nmas</groupId>
+            <artifactId>nmasclient</artifactId>
+            <version>2013.04.26</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.novell.security.nmas</groupId>
+            <artifactId>NMASToolkit</artifactId>
+            <version>2013.04.26</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.novell.security.nmas</groupId>
+            <artifactId>ldap</artifactId>
+            <version>2013.04.26</version>
+        </dependency>
+        <!-- / Novell jars (not available from a maven repo) -->
+
+    </dependencies>
+
+    <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>spring-boot</classifier>
+                            <mainClass>
+                                com.cht.directory.connector.sync.ActivedirectorySyncApp
+                            </mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                        <excludes>
+                            <exclude>**/application-*.yml</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>project.local</id>
+            <name>project</name>
+            <url>file:///${project.basedir}/local-maven-repo</url>
+        </repository>
+    </repositories>
+
+</project>

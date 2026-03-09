@@ -1,0 +1,1 @@
+java -jar cht-directorypassword-connector-1.0-SNAPSHOT.jar -mode d -cn %1 -password %2

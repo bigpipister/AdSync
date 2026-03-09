@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=cht-kms-client-1.1.0.jar -DgroupId=com.cht.kms -DartifactId=cht-kms-client -Dversion=1.1.0 -Dpackaging=jar

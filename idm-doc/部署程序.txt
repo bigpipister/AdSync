@@ -1,0 +1,83 @@
+# 掛載新磁碟
+lsblk
+sudo pvcreate /dev/sdb
+sudo vgcreate myvg /dev/sdb
+sudo lvcreate -L 90G -n mylv myvg
+(sudo lvcreate -l 100%FREE -n mylv myvg)
+sudo mkfs.ext4 /dev/myvg/mylv
+sudo mkdir -p /mnt/mydata
+sudo mount /dev/myvg/mylv /mnt/mydata
+sudo blkid /dev/myvg/mylv
+vi /etc/fstab
+(UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /mnt/mydata ext4 defaults 0 0)
+
+# podman安裝
+podman install:
+sudo dnf install dnf-plugins-core -y
+sudo dnf download --resolve --alldeps --downloaddir=./ podman
+sudo dnf install ./*.rpm --nogpgcheck --disablerepo=*
+
+# format
+tr -d '\r' < start-podman-services.sh > fixed.sh
+mv fixed.sh start-podman-services.sh
+chmod +x start-podman-services.sh
+
+(1)
+su -
+(2)
+visudo
+chtadm ALL=(ALL) ALL
+(3)
+sudo cp /home/chtadm/idm/podman/start-podman-services.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/start-podman-services.sh
+(4)
+sudo cp /home/chtadm/idm/podman/adws.service /etc/systemd/system/
+sudo chmod +x /etc/systemd/system/adws.service
+(4)
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable adws.service
+sudo systemctl start adws.service
+(5)
+sudo crontab -e
+
+*/2 * * * * podman start postgres 2>/dev/null
+*/2 * * * * podman start jenkins 2>/dev/null
+*/2 * * * * podman start pgadmin4 2>/dev/null
+(6)
+sudo firewall-cmd --get-active-zones
+sudo cat /usr/lib/firewalld/zones/public.xml
+sudo firewall-cmd --zone=public --list-all
+
+# 開放 TCP 5432 port（例如 PostgreSQL）
+sudo firewall-cmd --permanent --add-port=5432/tcp
+
+# 關閉 TCP 5432 port
+sudo firewall-cmd --permanent --remove-port=5432/tcp
+
+# 只開放特定ip連入特定port
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.1.101" port protocol="tcp" port="5432" accept'
+
+# 移除 service 的 ssh（避免所有人都能連）
+sudo firewall-cmd --permanent --remove-service=ssh
+# 只開放特定ip連入特定服務
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.1.10" service name="ssh" accept'
+
+sudo firewall-cmd --reload
+
+# 舊idm db設定pg_hba.conf
+vi /var/lib/pgsql/12/data/pg_hba.conf
+sudo systemctl reload postgresql-12
+
+
+目前的架構設計：
+-----------------------------------------------------------------------------------------
+項目			說明
+容器引擎		使用 Podman（Root 模式）
+執行方式		使用 systemd 以 root 權限啟動服務
+執行腳本權限		透過 sudo 限定使用者僅能免密碼執行 podman
+網路安全		firewalld 僅開啟必要 Port（如 5432、8080）
+			搭配 rich rule 控制外部來源
+GCB 對 Docker 不友善？	沒錯，因此使用 Podman 是正確選擇，較容易通過基線檢查
+服務開機自動啟動	已經建立 .service 並 enable
+SELinux 啟用情況	若啟用 enforcing 模式，也可透過 :Z 正確設定掛載的 SELinux context

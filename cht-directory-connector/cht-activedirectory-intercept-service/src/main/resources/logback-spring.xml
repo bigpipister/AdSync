@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 此xml在spring-boot-1.5.3.RELEASE.jar裡 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <!-- 開啟後可以通過jmx動態控制日誌級別(springboot Admin的功能) -->
+    <!--<jmxConfigurator/>-->
+
+    <!--輸出到控制檯-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--輸出到檔案-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<File>/home/hfw-client/hfw_log/stdout.log</File>-->
+        <File>C:\\AdPwdSync\\logback.log</File>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 新增.gz 歷史日誌會啟用壓縮 大大縮小日誌檔案所佔空間 -->
+            <!--<fileNamePattern>/home/hfw-client/hfw_log/stdout.log.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+            <fileNamePattern>logback.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory><!--  保留30天日誌 -->
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>

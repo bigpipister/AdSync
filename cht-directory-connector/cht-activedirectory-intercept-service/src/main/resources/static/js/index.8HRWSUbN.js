@@ -1,0 +1,1 @@
+import{d as a,ao as e,an as s,h as r,e as t}from"./index.wey_KhIk.js";const n=a({__name:"index",setup(a){const n=e(),p=s(),{params:o,query:d}=n,{path:u}=o;return p.replace({path:"/"+u,query:d}),(a,e)=>(t(),r("div"))}});export{n as default};

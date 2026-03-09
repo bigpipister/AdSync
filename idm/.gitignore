@@ -1,0 +1,6 @@
+idmdb/
+image/
+docker/*.tgz
+jenkins/activedirectory*
+jenkins/*.tar
+podman/install-package

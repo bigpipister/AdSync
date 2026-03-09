@@ -1,0 +1,60 @@
+(1) 前置作業
+# 產製最新oci
+sudo podman build --format oci -f Dockerfile_postgres -t docker.io/library/postgres:16 .
+
+# 產生一個符合 OCI 規範的 oci 檔案
+sudo podman save --format oci-archive -o postgres.oci postgres:16
+
+(2) 查版本
+sudo podman exec -it postgres postgres -V
+
+(3) 備份資料
+sudo podman exec -t postgres pg_dump -U exidm -d idmdb > idmdb_only_backup.sql
+
+(4) 更換image
+sudo podman rm -f postgres
+sudo podman rmi -f xxxxxxxx
+sudo podman load < postgres.oci
+
+(5) 備份資料夾
+mv idmdb idmdb_bak
+
+(6) 初始資料庫
+# 不使用 -v 掛載宿主機目錄，讓它在 /var/lib/postgresql/data 內長出來
+sudo podman run -d --name pg_temp \
+  -e POSTGRES_DB=idmdb \
+  -e POSTGRES_USER=exidm \
+  -e POSTGRES_PASSWORD='exidm' \
+  postgres:16
+
+#確認初始完成
+sudo podman logs -f pg_temp
+
+#停止容器
+sudo podman stop pg_temp
+
+# 建立存放 PostgreSQL 資料的目錄
+mkdir -p /apps/adws/idmdb
+
+# 把容器內的資料複製到宿主機
+sudo podman cp pg_temp:/var/lib/postgresql/data/. /apps/adws/idmdb/
+
+# 直接用 sudo 強制修改擁有者為 999
+sudo chown -R 999:999 /apps/adws/idmdb
+
+# 確保權限為 700 (這是 Postgres 能否順利啟動的關鍵)
+sudo chmod 700 /apps/adws/idmdb
+
+(7) 啟動container準備還原
+#確認能用exidm帳號連線
+sudo podman exec -it postgres psql -U exidm -d idmdb
+
+# 匯入資料
+cat idmdb_only_backup.sql | sudo podman exec -i postgres psql -U exidm -d idmdb
+
+(8) 解決collection告警
+# 執行定序修復
+sudo podman exec -it postgres psql -U exidm -d idmdb -c "ALTER DATABASE idmdb REFRESH COLLATION VERSION;"
+
+# 重新索引（保險起見）
+sudo podman exec -it postgres psql -U exidm -d idmdb -c "REINDEX DATABASE idmdb;"

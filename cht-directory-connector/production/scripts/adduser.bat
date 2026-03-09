@@ -1,0 +1,2 @@
+for /F "eol=; tokens=1,2,3 delims=," %%i in (.\users.txt) do dsadd user "cn=%%i,OU=A030600,OU=A03,OU=A05ROOT,OU=MOF,DC=taiwanlife,DC=cht" -samid %%i -upn %%i@taiwanlife.cht -display "%%j(%%i)" -pwd %%k -dept "A030600®ç¶é¤À§½ºî©Òµ|½Ò"
+@pause

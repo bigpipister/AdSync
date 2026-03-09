@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <springProfile
+            name="dev, devex, FIAin, FIAex, A05in, A05ex, H01in, H01ex, B01in, B01ex, D01in, D01ex, E01in, E01ex">
+        <!-- 寫到 FILE -->
+        <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <append>true</append>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- LOG 檔案儲存路徑 -->
+                <fileNamePattern>./log/activedirectory_sync_%d.%i.log</fileNamePattern>
+                <!-- 1 個檔案最大 10 MB -->
+                <timeBasedFileNamingAndTriggeringPolicy
+                        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <maxFileSize>10MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+                <!-- 留存 30 天 -->
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>500MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <charset>UTF-8</charset>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%p][%t][Line:%L][%c.%M]%m%n</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="FILEOUT"/>
+        </root>
+    </springProfile>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!--logger name="com.cht.directory.connector" level="ALL"/-->
+</configuration>

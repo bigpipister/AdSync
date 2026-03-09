@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=exchange-service-client-1.0.0.jar -DgroupId=com.cht.exchange.service -DartifactId=exchange-service-client -Dversion=1.0.0 -Dpackaging=jar

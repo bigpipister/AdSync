@@ -1,0 +1,63 @@
+export default {
+  // 菜單國際化
+  route: {
+    dashboard: "Dashboard",
+    document: "Document",
+  },
+  // 登錄頁面國際化
+  login: {
+    username: "Username",
+    password: "Password",
+    login: "Login",
+    register: "Register",
+    captchaCode: "Verify Code",
+    capsLock: "Caps Lock is On",
+    rememberMe: "Remember Me",
+    forgetPassword: "Forget Password",
+    message: {
+      username: {
+        required: "Please enter Username",
+      },
+      password: {
+        required: "Please enter Password",
+        min: "The password can not be less than 6 digits",
+      },
+      captchaCode: {
+        required: "Please enter Verify Code",
+      },
+    },
+    otherLoginMethods: "Other login methods",
+  },
+  // 導航欄國際化
+  navbar: {
+    dashboard: "Dashboard",
+    logout: "Logout",
+    document: "Document",
+    gitee: "Gitee",
+    profile: "User Profile",
+  },
+  sizeSelect: {
+    tooltip: "Layout Size",
+    default: "Default",
+    large: "Large",
+    small: "Small",
+    message: {
+      success: "Switch Layout Size Successful!",
+    },
+  },
+  langSelect: {
+    message: {
+      success: "Switch Language Successful!",
+    },
+  },
+  settings: {
+    project: "Project Settings",
+    theme: "Theme",
+    interface: "Interface",
+    navigation: "Navigation",
+    themeColor: "Theme Color",
+    tagsView: "Tags View",
+    sidebarLogo: "Sidebar Logo",
+    watermark: "Watermark",
+  },
+};
