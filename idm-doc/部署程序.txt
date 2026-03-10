@@ -30,7 +30,7 @@ chtadm ALL=(ALL) ALL
 (3)
 sudo cp /home/chtadm/idm/podman/start-podman-services.sh /usr/local/bin/
 sudo chmod +x /usr/local/bin/start-podman-services.sh
-(4)
+
 sudo cp /home/chtadm/idm/podman/adws.service /etc/systemd/system/
 sudo chmod +x /etc/systemd/system/adws.service
 (4)
