@@ -550,13 +550,29 @@ public class ActivedirectoryScanService {
 
                 ConnectorSpaceAdPersonDetails connectorSpaceAdPersonDetails = new ConnectorSpaceAdPersonDetails();
 
-                // 先從 db 拿出既有 object 的資料(如果有的話)
+                // 1. 原本用 DN 找人
                 Optional<ConnectorSpaceAdPersonDetails> connectorSpaceAdPersonDetailsOptional =
                         connectorSpaceAdPersonDetailsRepository.findByDnAndPlaceholder(entry.getDN(), serviceParameters.getPlaceholder());
 
                 // person 異動單位雖然用dn找不到，但因為key是cn跟placeholder，因此寫入時會蓋掉db內的原dn
-                if (connectorSpaceAdPersonDetailsOptional.isPresent())
+                if (connectorSpaceAdPersonDetailsOptional.isPresent()) {
+                    // 情況 A: DN 沒變，直接拿舊資料
                     connectorSpaceAdPersonDetails = connectorSpaceAdPersonDetailsOptional.get();
+                } else {
+                    // 情況 B: DN 找不到 (可能是新建帳號或異動單位)
+                    // 我們再用 CN 找一次，看看是不是「換了 DN 的同一個帳號」
+                    Optional<ConnectorSpaceAdPersonDetails> existingByCn =
+                            connectorSpaceAdPersonDetailsRepository.findByCnAndPlaceholder(cn, serviceParameters.getPlaceholder());
+
+                    if (existingByCn.isPresent()) {
+                        // 找到了！這就是那個 Filter 剛寫入密碼，但 DN 還是舊的的那個物件
+                        connectorSpaceAdPersonDetails = existingByCn.get();
+                        log.info("DN changed for CN: {}, inheriting existing data (including password)", cn);
+                    } else {
+                        // 真的完全沒資料，才當作全新帳號
+                        connectorSpaceAdPersonDetails = new ConnectorSpaceAdPersonDetails();
+                    }
+                }
 
                 // - 2020/07/14
                 // Keep Ad Extensionattribute2 Value(exchange停用後 這個值就ad上是什麼就照實寫入db)

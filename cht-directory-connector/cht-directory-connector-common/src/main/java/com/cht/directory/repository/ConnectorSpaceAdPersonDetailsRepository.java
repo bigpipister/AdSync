@@ -23,6 +23,9 @@ public interface ConnectorSpaceAdPersonDetailsRepository
     Optional<ConnectorSpaceAdPersonDetails> findByDnAndPlaceholder(
             String dn, String placeholder);
 
+    Optional<ConnectorSpaceAdPersonDetails> findByCnAndPlaceholder(
+            String cn, String placeholder);
+
     Optional<ConnectorSpaceAdPersonDetails> findBySamaccountnameAndPlaceholder(
             String name, String placeholder);
 
