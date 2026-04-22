@@ -54,7 +54,7 @@ cat idmdb_only_backup.sql | sudo podman exec -i postgres psql -U exidm -d idmdb
 
 (8) 解決collection告警
 # 執行定序修復
-sudo podman exec -it postgres psql -U exidm -d idmdb -c "ALTER DATABASE idmdb REFRESH COLLATION VERSION;"
+sudo podman exec -it postgres psql -U idmdb -d idmdb -c "ALTER DATABASE idmdb REFRESH COLLATION VERSION;"
 
 # 重新索引（保險起見）
-sudo podman exec -it postgres psql -U exidm -d idmdb -c "REINDEX DATABASE idmdb;"
+sudo podman exec -it postgres psql -U idmdb -d idmdb -c "REINDEX DATABASE idmdb;"
