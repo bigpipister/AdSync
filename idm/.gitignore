@@ -1,5 +1,5 @@
 idmdb/
-image/
+image/*.oci
 docker/*.tgz
 jenkins/activedirectory*
 jenkins/*.tar

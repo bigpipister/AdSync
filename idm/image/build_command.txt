@@ -1,0 +1,28 @@
+# 1. 刪除所有容器（包含停止的），因為容器會佔用 Layer 掛載點
+sudo podman rm -fa
+
+# 2. 刪除所有映像檔
+sudo podman rmi -fa
+
+# 3. 這是最重要的：清理所有孤兒層、快取與磁碟卷(所有目前沒被容器使用的都會被清除含image)
+sudo podman system prune -a --volumes -f
+
+相當於執行了：
+(1)podman container prune (刪除停止的容器)
+
+(2)podman image prune -a (刪除所有沒在跑的 Image)
+
+(3)podman network prune (刪除沒在用的虛擬網路)
+
+(4)podman volume prune (刪除沒在用的 Volume) -> 這是因為你加了 --volumes
+
+(5)podman builder prune -a (刪除所有快取)
+
+
+build與export --------------------------
+
+sudo podman build --no-cache -t docker.io/library/postgres:16 -f Dockerfile_postgres . && sudo podman save --format oci-archive -o postgres.oci docker.io/library/postgres:16
+
+sudo podman build --no-cache -t docker.io/jenkins/jenkins:latest -f Dockerfile_jenkins . && sudo podman save --format oci-archive -o jenkins.oci docker.io/jenkins/jenkins:latest
+
+sudo podman build --no-cache -t docker.io/dpage/pgadmin4:8.10 -f Dockerfile_pgadmin4 . && sudo podman save --format oci-archive -o pgadmin4.oci docker.io/dpage/pgadmin4:8.10

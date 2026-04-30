@@ -1,36 +1,14 @@
-(1)
-sudo buildah bud --format docker --squash --layers=false \
-  -t localhost/my/pgadmin4-clean-squashed:8.10 .
+GCB檢測語法---------------------------------------------------------------------------------------
 
-or
+(1) 清理所有孤兒層、快取與磁碟卷(所有目前沒被容器使用的都會被清除含image)
+sudo podman system prune -a --volumes -f
 
-sudo podman build --squash-all -t localhost/my/pgadmin4-clean-squashed:8.10 .
 (2)
-刪掉base image
-
-匯出
-sudo podman save --format oci-archive \
-  -o ./pgadmin4-clean.oci \
-  localhost/my/pgadmin4-clean-squashed:8.10
-
-匯入
-sudo podman load -i /tmp/pgadmin4-clean.oci
-sudo podman image inspect localhost/my/pgadmin4-clean-squashed:8.10 | jq '.[0].RootFS.Layers'
-# 預期：只看到 1 個 layer（新 hash）
-(3)
-sudo podman volume prune
-#sudo podman image prune -a
-sudo podman builder prune -a -f
-sudo podman system prune -a
-(4)
 sudo find / -xdev \( -nouser -o -nogroup \) -printf '%p  uid=%u  gid=%g\n' 2>/dev/null
 sudo find / -xdev -type d -perm -0002 -uid +999 -print
 
-H=<HASH>
-sudo podman images -q | xargs -r sudo podman image inspect \
-  | jq -r --arg h "sha256:$H" '.[] | select(.RootFS.Layers[]? == $h) | "\(.RepoTags[]? // "<none>")  (\(.Id))"'
-(5)
-建log與data目錄 並 chmod 777
+(3)
+建log與data目錄 並 chmod 755
 建config_distro.py 並 chmod 666
 改 start-podman-services.sh
 
@@ -41,19 +19,20 @@ groups <使用者名稱>
 podman run -d --name pgadmin4 \:q
 
   --network=host \
-  --user $(id -u admin):$(id -g root) \
+  --user $(id -u admin):$(id -g admin) \
   -e TZ=Asia/Taipei \
   -e PGADMIN_DEFAULT_EMAIL=admin@cht.com.tw \
   -e PGADMIN_DEFAULT_PASSWORD=1qaz@WSX \
   -e PGADMIN_LISTEN_ADDRESS=0.0.0.0 \
   -e PGADMIN_LISTEN_PORT=5050 \
-  -v /home/admin/apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
-  -v /home/admin/apps/adws/pgadmin/log:/var/log/pgadmin:Z \
-  -v /home/admin/apps/adws/pgadmin/config_distro.py:/pgadmin4/config_distro.py:Z \
-  -v /home/admin/apps/adws/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z \
+  -v /apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
+  -v /apps/adws/pgadmin/log:/var/log/pgadmin:Z \
+  -v /apps/adws/pgadmin/config_distro.py:/pgadmin4/config_distro.py:Z \
+  -v /apps/adws/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z \
   pgadmin4:8.10
 
-(6) 修復 collation version mismatch
+修復 collation version mismatch--------------------------------------------------------------------
+
 把 <DB> 換成你的資料庫名、<container> 換成容器名即可：
 
 # 先重建整個資料庫的文字索引（並行、不會長時間阻塞寫入）

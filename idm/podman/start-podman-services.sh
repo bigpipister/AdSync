@@ -12,25 +12,26 @@ podman run -d --name postgres \
   -e POSTGRES_USER=idmdb \
   -e POSTGRES_PASSWORD='idmdb' \
   -v /apps/adws/idmdb:/var/lib/postgresql/data:Z \
-  postgres:latest
+  postgres:16
 
 # Jenkins
 podman run -d --name jenkins \
   --network=host \
   -e TZ=Asia/Taipei \
   -v /apps/adws/jenkins/workspace:/var/jenkins_home:Z,U \
-  jenkins-lts-jdk17-psql:latest
+  jenkins:latest
 
 # PgAdmin4
 podman run -d --name pgadmin4 \
   --network=host \
+  --user $(id -u admin):$(id -g root) \
   -e TZ=Asia/Taipei \
   -e PGADMIN_DEFAULT_EMAIL=admin@cht.com.tw \
   -e PGADMIN_DEFAULT_PASSWORD=1qaz@WSX \
   -e PGADMIN_LISTEN_ADDRESS=0.0.0.0 \
   -e PGADMIN_LISTEN_PORT=5050 \
-  -e PGADMIN_CONFIG_LOG_FILE=/dev/stdout \
-  -e PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=20 \
-  -v /home/admin/apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
-  -v /apps/adws/pgadmin/servers.json:/pgadmin4/servers.json:Z \
-  pgadmin4-clean-squashed:8.10
+  -v /apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
+  -v /apps/adws/pgadmin/log:/var/log/pgadmin:Z \
+  -v /apps/adws/pgadmin/config_distro.py:/pgadmin4/config_distro.py:Z \
+  -v /apps/adws/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z \
+  pgadmin4:8.10

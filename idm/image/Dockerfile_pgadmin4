@@ -1,0 +1,41 @@
+FROM docker.io/dpage/pgadmin4:8.10
+
+USER 0
+
+# 移除 postfix（自動偵測可用套件管理器），並清理所有 postfix 殘留
+RUN set -eux; \
+    PM=""; for p in microdnf dnf yum apk apt-get; do command -v "$p" >/dev/null 2>&1 && PM="$p" && break; done; \
+    echo "Package manager: ${PM:-none}"; \
+    if [ -n "$PM" ]; then \
+      case "$PM" in \
+        microdnf) microdnf -y remove postfix || true; microdnf -y clean all ;; \
+        dnf)      dnf -y remove postfix || true; dnf -y autoremove || true; dnf -y clean all ;; \
+        yum)      yum -y remove postfix || true; yum -y autoremove || true; yum -y clean all ;; \
+        apk)      apk del --no-cache postfix || true ;; \
+        apt-get)  apt-get update; apt-get purge -y postfix || true; apt-get autoremove -y; apt-get clean; rm -rf /var/lib/apt/lists/* ;; \
+      esac; \
+    fi; \
+    # 無論是否成功移除套件，都強制清掉這些目錄/檔案
+    rm -rf /var/spool/postfix /var/lib/postfix /etc/postfix \
+           /usr/sbin/postdrop /usr/sbin/postqueue || true
+
+RUN set -eux; \
+    # 修正 shadow 相關檔案群組，並收緊權限（避免 gid=42 觸發 GCB）
+    for f in /etc/shadow /etc/shadow- /etc/gshadow /etc/gshadow- \
+             /usr/sbin/unix_chkpwd /sbin/unix_chkpwd \
+             /usr/bin/chage /usr/bin/expiry; do \
+      [ -e "$f" ] && chgrp 0 "$f" && chmod 640 "$f" || true; \
+    done; \
+	
+    # 清各發行版快取（依存在與否清）：
+    rm -rf /var/cache/apt/archives /var/cache/apt/lists \
+           /var/cache/dnf /var/cache/yum \
+           /var/cache/apk /lib/apk/db/* || true \
+		   
+    # 把程式碼與 run-time 目錄改成 root 擁有；把資料目錄也一併改掉
+    mkdir -p /pgadmin4 /run/pgadmin /var/lib/pgadmin; \
+    chown -R 0:0 /pgadmin4 /run/pgadmin /var/lib/pgadmin; \
+    chmod -R a=rX,u+w /pgadmin4 /run/pgadmin /var/lib/pgadmin
+
+# 仍以 pgadmin 使用者（UID=5050）執行應用；實際資料用 bind mount
+USER 5050

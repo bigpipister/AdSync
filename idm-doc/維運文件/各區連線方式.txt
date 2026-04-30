@@ -32,5 +32,5 @@
 LAB
 ------------------------------------------------
 192.168.16.130	admin / admin
-192.168.16.131	admin / 4rfv%TGB6yhn	root / 1qaz@WSX
+192.168.16.131	admin / admin	root / 1qaz@WSX
 192.168.16.132	admin / admin
