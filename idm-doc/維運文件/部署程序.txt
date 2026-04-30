@@ -24,26 +24,31 @@ chmod +x start-podman-services.sh
 
 (1)
 su -
+
 (2)
 visudo
 chtadm ALL=(ALL) ALL
+
 (3)
 sudo cp /home/chtadm/idm/podman/start-podman-services.sh /usr/local/bin/
 sudo chmod +x /usr/local/bin/start-podman-services.sh
 
 sudo cp /home/chtadm/idm/podman/adws.service /etc/systemd/system/
 sudo chmod +x /etc/systemd/system/adws.service
+
 (4)
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable adws.service
 sudo systemctl start adws.service
+
 (5)
 sudo crontab -e
 
 */2 * * * * podman start postgres 2>/dev/null
 */2 * * * * podman start jenkins 2>/dev/null
 */2 * * * * podman start pgadmin4 2>/dev/null
+
 (6)
 sudo firewall-cmd --get-active-zones
 sudo cat /usr/lib/firewalld/zones/public.xml
@@ -68,6 +73,9 @@ sudo firewall-cmd --reload
 # 舊idm db設定pg_hba.conf
 vi /var/lib/pgsql/12/data/pg_hba.conf
 sudo systemctl reload postgresql-12
+
+(7)
+/apps/adws/ 下的 jenkins pgadmin 等目錄，不要用root建，要用ap0001之類的建，這樣unshare模式啟動讓掛載目載擁有者與容器內部使用者對應才對
 
 
 目前的架構設計：
