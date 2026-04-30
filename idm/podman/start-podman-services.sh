@@ -18,6 +18,7 @@ podman run -d --name postgres \
 podman run -d --name jenkins \
   --network=host \
   -e TZ=Asia/Taipei \
+  # U是無根模式，它會自動將宿主機掛載目錄的擁有者，與容器內的身份做對應
   -v /apps/adws/jenkins/workspace:/var/jenkins_home:Z,U \
   jenkins:latest
 
@@ -30,8 +31,9 @@ podman run -d --name pgadmin4 \
   -e PGADMIN_DEFAULT_PASSWORD=1qaz@WSX \
   -e PGADMIN_LISTEN_ADDRESS=0.0.0.0 \
   -e PGADMIN_LISTEN_PORT=5050 \
-  -v /apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
-  -v /apps/adws/pgadmin/log:/var/log/pgadmin:Z \
+  # U是無根模式，它會自動將宿主機掛載目錄的擁有者，與容器內的身份做對應
+  -v /apps/adws/pgadmin/data:/var/lib/pgadmin:Z,U \
+  -v /apps/adws/pgadmin/log:/var/log/pgadmin:Z,U \
   -v /apps/adws/pgadmin/config_distro.py:/pgadmin4/config_distro.py:Z \
   -v /apps/adws/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z \
   pgadmin4:8.10
