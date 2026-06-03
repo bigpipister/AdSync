@@ -24,7 +24,7 @@ RUN set -eux; \
     # 確保資料目錄存在且權限正確（以免某些情況被覆蓋）
     mkdir -p /var/lib/postgresql/data /var/run/postgresql && \
     chown -R postgres:postgres /var/lib/postgresql /var/run/postgresql && \
-    chmod 777 /var/run/postgresql
+    chmod 775 /var/run/postgresql
 
 # 回到 postgres 使用者執行
 USER postgres

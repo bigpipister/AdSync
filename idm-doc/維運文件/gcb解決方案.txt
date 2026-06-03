@@ -1,3 +1,9 @@
+image build語法---------------------------------------------------------------------------------------
+
+sudo buildah bud --format docker --squash --layers=false -t docker.io/library/postgres:16 -f Dockerfile_postgres . && sudo podman save --format oci-archive -o postgres.oci docker.io/library/postgres:16
+
+
+
 GCB檢測語法---------------------------------------------------------------------------------------
 
 (1) 清理所有孤兒層、快取與磁碟卷(所有目前沒被容器使用的都會被清除含image)
@@ -8,6 +14,7 @@ sudo find / -xdev \( -nouser -o -nogroup \) -printf '%p  uid=%u  gid=%g\n' 2>/de
 sudo find / -xdev -type d -perm -0002 -uid +999 -print
 
 (3)
+改資料目錄owner => sudo chown -R $(id -u ap0001):$(id -g ap0001) jenkins_idmdb pgadmin
 建log與data目錄 並 chmod 755
 建config_distro.py 並 chmod 666
 改 start-podman-services.sh
@@ -51,3 +58,7 @@ SELECT n.nspname, c.collname, c.collversion AS recorded,
 FROM pg_collation c
 JOIN pg_namespace n ON n.oid = c.collnamespace
 WHERE c.collversion IS DISTINCT FROM pg_collation_actual_version(c.oid);
+
+
+待處理----------------------------------------------------------------------------------------------
+/var/lib/containers/storage/overlay/f0be4121f2814ebc33e5f43260a1719012df3a177ba945b2b84f81e2164cc422/diff/var/jenkins_home  uid=fiamon  gid=1000
