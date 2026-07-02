@@ -1,0 +1,805 @@
+Jun 22 08:51:16 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:16.349 UTC [6034] ERROR:  syntax error at or near ")" at character 65
+Jun 22 08:51:16 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:16.349 UTC [6034] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 08:51:16 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 08:51:16 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:51:16 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:51:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:19.418 UTC [6038] ERROR:  syntax error at or near ")" at character 26
+Jun 22 08:51:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:19.418 UTC [6038] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 08:51:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 08:51:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 08:51:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:51:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:22.489 UTC [6042] ERROR:  syntax error at or near ")" at character 53
+Jun 22 08:51:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:51:22.489 UTC [6042] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 08:51:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 08:51:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:51:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:52:05 SAOIDM06 NetworkManager[999]: <info>  [1782089525.9141] device (eth0): carrier: link connected
+Jun 22 08:52:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:11.950 UTC [6046] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:52:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:11.950 UTC [6046] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:52:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:11.950 UTC [6046] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:52:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:19.450 UTC [6049] ERROR:  syntax error at or near ")" at character 47
+Jun 22 08:52:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:19.450 UTC [6049] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 08:52:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 08:52:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:52:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:52:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:22.712 UTC [6053] ERROR:  syntax error at or near ")" at character 60
+Jun 22 08:52:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:22.712 UTC [6053] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 08:52:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 08:52:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:52:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:52:25 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:25.783 UTC [6057] ERROR:  syntax error at or near ")" at character 48
+Jun 22 08:52:25 SAOIDM06 postgres[1167110]: 2026-06-22 00:52:25.783 UTC [6057] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 08:52:25 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 08:52:25 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:52:25 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:53:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:53:11.978 UTC [6091] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:53:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:53:11.978 UTC [6091] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:53:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:53:11.978 UTC [6091] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:54:02 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:02.425 UTC [6099] ERROR:  syntax error at or near ")" at character 47
+Jun 22 08:54:02 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:02.425 UTC [6099] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 08:54:02 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 08:54:02 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:54:02 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:54:05 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:05.497 UTC [6103] ERROR:  syntax error at or near ")" at character 60
+Jun 22 08:54:05 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:05.497 UTC [6103] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 08:54:05 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 08:54:05 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:54:05 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:54:08 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:08.571 UTC [6108] ERROR:  syntax error at or near ")" at character 48
+Jun 22 08:54:08 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:08.571 UTC [6108] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 08:54:08 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 08:54:08 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:54:08 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:54:09 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:09.364 UTC [9] LOG:  checkpoint complete: wrote 2411 buffers (14.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=241.234 s, sync=0.009 s, total=241.249 s; sync files=147, longest=0.001 s, average=0.001 s; distance=21423 kB, estimate=21755 kB; lsn=1F7/61DB6B08, redo lsn=1F7/60DE6408
+Jun 22 08:54:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:11.995 UTC [6110] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:54:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:11.995 UTC [6110] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:54:11 SAOIDM06 postgres[1167110]: 2026-06-22 00:54:11.995 UTC [6110] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:55:00 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 08:55:00 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 08:55:01 SAOIDM06 setroubleshoot[1220861]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2892.service.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Created slice User Slice of UID 0.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Starting User Runtime Directory /run/user/0...
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Finished User Runtime Directory /run/user/0.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Starting User Manager for UID 0...
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Queued start job for default target Main User Target.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Created slice User Application Slice.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Mark boot as successful after the user session has run 2 minutes was skipped because of an unmet condition check (ConditionUser=!@system).
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Started Daily Cleanup of User's Temporary Directories.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Reached target Paths.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Reached target Timers.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Starting D-Bus User Message Bus Socket...
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: PipeWire PulseAudio was skipped because of an unmet condition check (ConditionUser=!root).
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Listening on PipeWire Multimedia System Sockets.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Starting Create User's Volatile Files and Directories...
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Listening on D-Bus User Message Bus Socket.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Reached target Sockets.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Finished Create User's Volatile Files and Directories.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Reached target Basic System.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Reached target Main User Target.
+Jun 22 08:55:01 SAOIDM06 systemd[1220899]: Startup finished in 133ms.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Started User Manager for UID 0.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: Started Session 4695 of User root.
+Jun 22 08:55:01 SAOIDM06 systemd[1]: session-4695.scope: Deactivated successfully.
+Jun 22 08:55:02 SAOIDM06 SetroubleshootPrivileged.py[1220893]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 08:55:02 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:05 SAOIDM06 NetworkManager[999]: <info>  [1782089705.8820] device (eth1): carrier: link connected
+Jun 22 08:55:08 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:08.373 UTC [9] LOG:  checkpoint starting: time
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 08:55:10 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:11 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 08:55:11 SAOIDM06 setroubleshoot[1220861]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:12.003 UTC [6120] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:55:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:12.003 UTC [6120] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:55:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:12.003 UTC [6120] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: Stopping User Manager for UID 0...
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Activating special unit Exit the Session...
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped target Main User Target.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped target Basic System.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped target Paths.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped target Sockets.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped target Timers.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped Daily Cleanup of User's Temporary Directories.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Closed D-Bus User Message Bus Socket.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Closed PipeWire Multimedia System Sockets.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Stopped Create User's Volatile Files and Directories.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Removed slice User Application Slice.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Reached target Shutdown.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Finished Exit the Session.
+Jun 22 08:55:12 SAOIDM06 systemd[1220899]: Reached target Exit the Session.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: user@0.service: Deactivated successfully.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: Stopped User Manager for UID 0.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: Stopping User Runtime Directory /run/user/0...
+Jun 22 08:55:12 SAOIDM06 systemd[1]: run-user-0.mount: Deactivated successfully.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: user-runtime-dir@0.service: Deactivated successfully.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: Stopped User Runtime Directory /run/user/0.
+Jun 22 08:55:12 SAOIDM06 systemd[1]: Removed slice User Slice of UID 0.
+Jun 22 08:55:15 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:15.700 UTC [6124] ERROR:  syntax error at or near ")" at character 25
+Jun 22 08:55:15 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:15.700 UTC [6124] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 08:55:15 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 08:55:15 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 08:55:18 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:18.776 UTC [6129] ERROR:  syntax error at or near ")" at character 25
+Jun 22 08:55:18 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:18.776 UTC [6129] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 08:55:18 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 08:55:18 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 08:55:18 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:55:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2892.service: Deactivated successfully.
+Jun 22 08:55:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 08:55:21 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:21.850 UTC [6133] ERROR:  syntax error at or near ")" at character 52
+Jun 22 08:55:21 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:21.850 UTC [6133] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 08:55:21 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 08:55:21 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:55:21 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:55:24 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:24.922 UTC [6137] ERROR:  syntax error at or near ")" at character 65
+Jun 22 08:55:24 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:24.922 UTC [6137] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 08:55:24 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 08:55:24 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:55:24 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:55:27 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:27.993 UTC [6142] ERROR:  syntax error at or near ")" at character 26
+Jun 22 08:55:27 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:27.993 UTC [6142] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 08:55:27 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 08:55:27 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 08:55:27 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:55:30 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 08:55:30 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 08:55:30 SAOIDM06 setroubleshoot[1221169]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 08:55:30 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2893.service.
+Jun 22 08:55:31 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:31.084 UTC [6146] ERROR:  syntax error at or near ")" at character 53
+Jun 22 08:55:31 SAOIDM06 postgres[1167110]: 2026-06-22 00:55:31.084 UTC [6146] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 08:55:31 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 08:55:31 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:55:31 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:55:31 SAOIDM06 SetroubleshootPrivileged.py[1221178]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 08:55:31 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 08:55:31 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:31 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 08:55:31 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:40 SAOIDM06 setroubleshoot[1221169]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 08:55:40 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 08:55:40 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:41 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 08:55:41 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:41 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 08:55:41 SAOIDM06 setroubleshoot[1221169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 08:55:51 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2893.service: Deactivated successfully.
+Jun 22 08:55:51 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 08:56:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:56:12.032 UTC [6162] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:56:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:56:12.032 UTC [6162] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:56:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:56:12.032 UTC [6162] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:57:07 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:07.126 UTC [6175] ERROR:  syntax error at or near ")" at character 25
+Jun 22 08:57:07 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:07.126 UTC [6175] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 08:57:07 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 08:57:07 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 08:57:10 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:10.201 UTC [6180] ERROR:  syntax error at or near ")" at character 25
+Jun 22 08:57:10 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:10.201 UTC [6180] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 08:57:10 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 08:57:10 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 08:57:10 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:57:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:12.060 UTC [6182] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:57:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:12.060 UTC [6182] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:57:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:12.060 UTC [6182] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:57:13 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:13.285 UTC [6186] ERROR:  syntax error at or near ")" at character 52
+Jun 22 08:57:13 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:13.285 UTC [6186] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 08:57:13 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 08:57:13 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:57:13 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:57:16 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:16.345 UTC [6190] ERROR:  syntax error at or near ")" at character 65
+Jun 22 08:57:16 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:16.345 UTC [6190] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 08:57:16 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 08:57:16 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:57:16 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:57:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:19.416 UTC [6194] ERROR:  syntax error at or near ")" at character 26
+Jun 22 08:57:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:19.416 UTC [6194] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 08:57:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 08:57:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 08:57:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:57:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:22.492 UTC [6198] ERROR:  syntax error at or near ")" at character 53
+Jun 22 08:57:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:22.492 UTC [6198] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 08:57:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 08:57:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:57:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:57:55 SAOIDM06 postgres[1167110]: 2026-06-22 00:57:55.008 UTC [9] LOG:  checkpoint complete: wrote 1667 buffers (10.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=166.623 s, sync=0.008 s, total=166.635 s; sync files=126, longest=0.001 s, average=0.001 s; distance=16255 kB, estimate=21205 kB; lsn=1F7/62943860, redo lsn=1F7/61DC6248
+Jun 22 08:58:06 SAOIDM06 NetworkManager[999]: <info>  [1782089886.6820] device (eth0): carrier: link connected
+Jun 22 08:58:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:12.062 UTC [6202] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:58:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:12.062 UTC [6202] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:58:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:12.062 UTC [6202] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 08:58:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:19.385 UTC [6205] ERROR:  syntax error at or near ")" at character 47
+Jun 22 08:58:19 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:19.385 UTC [6205] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 08:58:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 08:58:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:58:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:58:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:22.584 UTC [6209] ERROR:  syntax error at or near ")" at character 60
+Jun 22 08:58:22 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:22.584 UTC [6209] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 08:58:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 08:58:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 08:58:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:58:25 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:25.656 UTC [6213] ERROR:  syntax error at or near ")" at character 48
+Jun 22 08:58:25 SAOIDM06 postgres[1167110]: 2026-06-22 00:58:25.656 UTC [6213] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 08:58:25 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 08:58:25 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 08:58:25 SAOIDM06 postgres[1167110]: #011;
+Jun 22 08:59:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:59:12.080 UTC [6247] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 08:59:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:59:12.080 UTC [6247] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 08:59:12 SAOIDM06 postgres[1167110]: 2026-06-22 00:59:12.080 UTC [6247] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Created slice User Slice of UID 0.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Starting User Runtime Directory /run/user/0...
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Finished User Runtime Directory /run/user/0.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Starting User Manager for UID 0...
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Queued start job for default target Main User Target.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Created slice User Application Slice.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Mark boot as successful after the user session has run 2 minutes was skipped because of an unmet condition check (ConditionUser=!@system).
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Started Daily Cleanup of User's Temporary Directories.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Reached target Paths.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Reached target Timers.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Starting D-Bus User Message Bus Socket...
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: PipeWire PulseAudio was skipped because of an unmet condition check (ConditionUser=!root).
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Listening on PipeWire Multimedia System Sockets.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Starting Create User's Volatile Files and Directories...
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Listening on D-Bus User Message Bus Socket.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Reached target Sockets.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Finished Create User's Volatile Files and Directories.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Reached target Basic System.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Reached target Main User Target.
+Jun 22 09:00:02 SAOIDM06 systemd[1222083]: Startup finished in 124ms.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started User Manager for UID 0.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4697 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4698 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4699 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4700 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4701 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: Started Session 4702 of User root.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4702.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4699.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4700.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4701.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4697.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 systemd[1]: session-4698.scope: Deactivated successfully.
+Jun 22 09:00:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:02.430 UTC [6255] ERROR:  syntax error at or near ")" at character 47
+Jun 22 09:00:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:02.430 UTC [6255] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 09:00:02 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 09:00:02 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:00:02 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:00:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:05.495 UTC [6259] ERROR:  syntax error at or near ")" at character 60
+Jun 22 09:00:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:05.495 UTC [6259] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 09:00:05 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 09:00:05 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:00:05 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:08.025 UTC [9] LOG:  checkpoint starting: time
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:08.569 UTC [6264] ERROR:  syntax error at or near ")" at character 48
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:08.569 UTC [6264] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:00:08 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:00:10 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:00:10 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:00:10 SAOIDM06 setroubleshoot[1222217]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:00:10 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2894.service.
+Jun 22 09:00:11 SAOIDM06 SetroubleshootPrivileged.py[1222226]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:00:11 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:12.107 UTC [6266] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:00:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:12.107 UTC [6266] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:00:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:00:12.107 UTC [6266] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: Stopping User Manager for UID 0...
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Activating special unit Exit the Session...
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped target Main User Target.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped target Basic System.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped target Paths.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped target Sockets.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped target Timers.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped Daily Cleanup of User's Temporary Directories.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Closed D-Bus User Message Bus Socket.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Closed PipeWire Multimedia System Sockets.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Stopped Create User's Volatile Files and Directories.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Removed slice User Application Slice.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Reached target Shutdown.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Finished Exit the Session.
+Jun 22 09:00:12 SAOIDM06 systemd[1222083]: Reached target Exit the Session.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: user@0.service: Deactivated successfully.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: Stopped User Manager for UID 0.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: Stopping User Runtime Directory /run/user/0...
+Jun 22 09:00:12 SAOIDM06 systemd[1]: run-user-0.mount: Deactivated successfully.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: user-runtime-dir@0.service: Deactivated successfully.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: Stopped User Runtime Directory /run/user/0.
+Jun 22 09:00:12 SAOIDM06 systemd[1]: Removed slice User Slice of UID 0.
+Jun 22 09:00:20 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:00:20 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:21 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:00:21 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:21 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:00:21 SAOIDM06 setroubleshoot[1222217]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:00:31 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2894.service: Deactivated successfully.
+Jun 22 09:00:31 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:00:51 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:00:51 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:00:51 SAOIDM06 setroubleshoot[1222267]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:00:51 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2895.service.
+Jun 22 09:00:52 SAOIDM06 SetroubleshootPrivileged.py[1222276]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:00:52 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:00:52 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:01:00 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:01:00 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:01:01 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:01:01 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:01:05 SAOIDM06 NetworkManager[999]: <info>  [1782090065.8180] device (eth1): carrier: link connected
+Jun 22 09:01:10 SAOIDM06 setroubleshoot[1222267]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:01:10 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:01:10 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:01:11 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:01:11 SAOIDM06 setroubleshoot[1222267]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:01:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:12.111 UTC [6276] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:01:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:12.111 UTC [6276] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:01:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:12.111 UTC [6276] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:01:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:15.639 UTC [6280] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:01:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:15.639 UTC [6280] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 09:01:15 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 09:01:15 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 09:01:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:18.712 UTC [6285] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:01:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:18.712 UTC [6285] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 09:01:18 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 09:01:18 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 09:01:18 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:01:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2895.service: Deactivated successfully.
+Jun 22 09:01:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:01:21 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:21.785 UTC [6289] ERROR:  syntax error at or near ")" at character 52
+Jun 22 09:01:21 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:21.785 UTC [6289] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 09:01:21 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 09:01:21 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:01:21 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:01:24 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:24.856 UTC [6293] ERROR:  syntax error at or near ")" at character 65
+Jun 22 09:01:24 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:24.856 UTC [6293] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 09:01:24 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 09:01:24 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:01:24 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:01:27 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:27.933 UTC [6298] ERROR:  syntax error at or near ")" at character 26
+Jun 22 09:01:27 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:27.933 UTC [6298] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 09:01:27 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 09:01:27 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 09:01:27 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:01:31 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:31.000 UTC [6302] ERROR:  syntax error at or near ")" at character 53
+Jun 22 09:01:31 SAOIDM06 postgres[1167110]: 2026-06-22 01:01:31.000 UTC [6302] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 09:01:31 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 09:01:31 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:01:31 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:02:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:02:12.140 UTC [6318] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:02:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:02:12.140 UTC [6318] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:02:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:02:12.140 UTC [6318] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:02:52 SAOIDM06 NetworkManager[999]: <info>  [1782090172.8261] agent-manager: agent[13937283a3396251,:1.99/org.gnome.Shell.NetworkAgent/1002]: agent registered
+Jun 22 09:03:00 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:03:00 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:03:00 SAOIDM06 setroubleshoot[1222722]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:03:00 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2896.service.
+Jun 22 09:03:01 SAOIDM06 SetroubleshootPrivileged.py[1222731]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:03:01 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:03:01 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:03:01 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:03:01 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:03:07 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:07.125 UTC [6331] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:03:07 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:07.125 UTC [6331] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 09:03:07 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 09:03:07 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 09:03:10 SAOIDM06 setroubleshoot[1222722]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:03:10 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:03:10 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:03:10 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:10.201 UTC [6336] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:03:10 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:10.201 UTC [6336] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 09:03:10 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 09:03:10 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 09:03:10 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:03:11 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:03:11 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:03:11 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:03:11 SAOIDM06 setroubleshoot[1222722]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:03:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:12.169 UTC [6338] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:03:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:12.169 UTC [6338] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:03:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:12.169 UTC [6338] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:03:13 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:13.281 UTC [6342] ERROR:  syntax error at or near ")" at character 52
+Jun 22 09:03:13 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:13.281 UTC [6342] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 09:03:13 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 09:03:13 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:03:13 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:03:16 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:16.343 UTC [6346] ERROR:  syntax error at or near ")" at character 65
+Jun 22 09:03:16 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:16.343 UTC [6346] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 09:03:16 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 09:03:16 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:03:16 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:03:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:19.417 UTC [6350] ERROR:  syntax error at or near ")" at character 26
+Jun 22 09:03:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:19.417 UTC [6350] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 09:03:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 09:03:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 09:03:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:03:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2896.service: Deactivated successfully.
+Jun 22 09:03:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:03:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:22.495 UTC [6354] ERROR:  syntax error at or near ")" at character 53
+Jun 22 09:03:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:03:22.495 UTC [6354] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 09:03:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 09:03:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:03:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:04:05 SAOIDM06 NetworkManager[999]: <info>  [1782090245.9140] device (eth0): carrier: link connected
+Jun 22 09:04:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:12.181 UTC [6358] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:04:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:12.181 UTC [6358] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:04:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:12.181 UTC [6358] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:04:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:19.321 UTC [6361] ERROR:  syntax error at or near ")" at character 47
+Jun 22 09:04:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:19.321 UTC [6361] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 09:04:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 09:04:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:04:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:04:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:22.519 UTC [6365] ERROR:  syntax error at or near ")" at character 60
+Jun 22 09:04:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:22.519 UTC [6365] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 09:04:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 09:04:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:04:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:04:25 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:25.591 UTC [6369] ERROR:  syntax error at or near ")" at character 48
+Jun 22 09:04:25 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:25.591 UTC [6369] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 09:04:25 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 09:04:25 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:04:25 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:04:38 SAOIDM06 postgres[1167110]: 2026-06-22 01:04:38.113 UTC [9] LOG:  checkpoint complete: wrote 3470 buffers (21.2%); 0 WAL file(s) added, 0 removed, 2 recycled; write=270.070 s, sync=0.013 s, total=270.088 s; sync files=195, longest=0.001 s, average=0.001 s; distance=21893 kB, estimate=21893 kB; lsn=1F7/63ED59D0, redo lsn=1F7/633279E8
+Jun 22 09:05:00 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:05:00 SAOIDM06 systemd[1]: Starting dnf makecache...
+Jun 22 09:05:00 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:05:00 SAOIDM06 dnf[1223170]: Updating Subscription Management repositories.
+Jun 22 09:05:00 SAOIDM06 dnf[1223170]: Unable to read consumer identity
+Jun 22 09:05:00 SAOIDM06 dnf[1223170]: This system is not registered with an entitlement server. You can use "rhc" or "subscription-manager" to register.
+Jun 22 09:05:00 SAOIDM06 dnf[1223170]: Metadata cache refreshed recently.
+Jun 22 09:05:00 SAOIDM06 systemd[1]: dnf-makecache.service: Deactivated successfully.
+Jun 22 09:05:00 SAOIDM06 systemd[1]: Finished dnf makecache.
+Jun 22 09:05:01 SAOIDM06 setroubleshoot[1223169]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2897.service.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Created slice User Slice of UID 0.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Starting User Runtime Directory /run/user/0...
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Finished User Runtime Directory /run/user/0.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Starting User Manager for UID 0...
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Queued start job for default target Main User Target.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Created slice User Application Slice.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Mark boot as successful after the user session has run 2 minutes was skipped because of an unmet condition check (ConditionUser=!@system).
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Started Daily Cleanup of User's Temporary Directories.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Reached target Paths.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Reached target Timers.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Starting D-Bus User Message Bus Socket...
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: PipeWire PulseAudio was skipped because of an unmet condition check (ConditionUser=!root).
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Listening on PipeWire Multimedia System Sockets.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Starting Create User's Volatile Files and Directories...
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Listening on D-Bus User Message Bus Socket.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Reached target Sockets.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Finished Create User's Volatile Files and Directories.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Reached target Basic System.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Reached target Main User Target.
+Jun 22 09:05:01 SAOIDM06 systemd[1223248]: Startup finished in 137ms.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Started User Manager for UID 0.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: Started Session 4704 of User root.
+Jun 22 09:05:01 SAOIDM06 systemd[1]: session-4704.scope: Deactivated successfully.
+Jun 22 09:05:01 SAOIDM06 SetroubleshootPrivileged.py[1223219]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:05:01 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:05:01 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:01 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:05:01 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:05:08.129 UTC [9] LOG:  checkpoint starting: time
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:05:10 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:11 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:05:11 SAOIDM06 setroubleshoot[1223169]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:11 SAOIDM06 systemd[1]: Stopping User Manager for UID 0...
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Activating special unit Exit the Session...
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped target Main User Target.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped target Basic System.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped target Paths.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped target Sockets.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped target Timers.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped Daily Cleanup of User's Temporary Directories.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Closed D-Bus User Message Bus Socket.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Closed PipeWire Multimedia System Sockets.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Stopped Create User's Volatile Files and Directories.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Removed slice User Application Slice.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Reached target Shutdown.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Finished Exit the Session.
+Jun 22 09:05:11 SAOIDM06 systemd[1223248]: Reached target Exit the Session.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: user@0.service: Deactivated successfully.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: Stopped User Manager for UID 0.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: Stopping User Runtime Directory /run/user/0...
+Jun 22 09:05:11 SAOIDM06 systemd[1]: run-user-0.mount: Deactivated successfully.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: user-runtime-dir@0.service: Deactivated successfully.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: Stopped User Runtime Directory /run/user/0.
+Jun 22 09:05:11 SAOIDM06 systemd[1]: Removed slice User Slice of UID 0.
+Jun 22 09:05:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:05:12.188 UTC [6403] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:05:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:05:12.188 UTC [6403] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:05:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:05:12.188 UTC [6403] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:05:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2897.service: Deactivated successfully.
+Jun 22 09:05:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:05:30 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:05:30 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:05:30 SAOIDM06 setroubleshoot[1223460]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:05:30 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2898.service.
+Jun 22 09:05:31 SAOIDM06 SetroubleshootPrivileged.py[1223469]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:05:31 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:05:31 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:31 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:05:31 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:41 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:05:41 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:41 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:05:41 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:05:51 SAOIDM06 setroubleshoot[1223460]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:05:51 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:05:51 SAOIDM06 setroubleshoot[1223460]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:06:01 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2898.service: Deactivated successfully.
+Jun 22 09:06:01 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:06:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:02.489 UTC [6411] ERROR:  syntax error at or near ")" at character 47
+Jun 22 09:06:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:02.489 UTC [6411] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 09:06:02 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 09:06:02 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:06:02 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:06:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:05.560 UTC [6415] ERROR:  syntax error at or near ")" at character 60
+Jun 22 09:06:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:05.560 UTC [6415] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 09:06:05 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 09:06:05 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:06:05 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:06:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:08.644 UTC [6420] ERROR:  syntax error at or near ")" at character 48
+Jun 22 09:06:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:08.644 UTC [6420] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 09:06:08 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 09:06:08 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:06:08 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:06:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:12.204 UTC [6422] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:06:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:12.204 UTC [6422] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:06:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:06:12.204 UTC [6422] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:07:05 SAOIDM06 NetworkManager[999]: <info>  [1782090425.8820] device (eth1): carrier: link connected
+Jun 22 09:07:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:12.228 UTC [6432] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:07:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:12.228 UTC [6432] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:07:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:12.228 UTC [6432] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:07:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:15.636 UTC [6436] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:07:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:15.636 UTC [6436] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 09:07:15 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 09:07:15 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 09:07:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:18.711 UTC [6441] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:07:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:18.711 UTC [6441] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 09:07:18 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 09:07:18 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 09:07:18 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:07:21 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:21.786 UTC [6445] ERROR:  syntax error at or near ")" at character 52
+Jun 22 09:07:21 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:21.786 UTC [6445] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 09:07:21 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 09:07:21 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:07:21 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:07:24 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:24.858 UTC [6449] ERROR:  syntax error at or near ")" at character 65
+Jun 22 09:07:24 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:24.858 UTC [6449] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 09:07:24 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 09:07:24 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:07:24 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:07:27 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:27.929 UTC [6454] ERROR:  syntax error at or near ")" at character 26
+Jun 22 09:07:27 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:27.929 UTC [6454] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 09:07:27 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 09:07:27 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 09:07:27 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:07:31 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:31.000 UTC [6458] ERROR:  syntax error at or near ")" at character 53
+Jun 22 09:07:31 SAOIDM06 postgres[1167110]: 2026-06-22 01:07:31.000 UTC [6458] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 09:07:31 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 09:07:31 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:07:31 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:08:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:08:12.257 UTC [6474] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:08:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:08:12.257 UTC [6474] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:08:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:08:12.257 UTC [6474] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:09:07 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:07.125 UTC [6487] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:09:07 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:07.125 UTC [6487] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 09:09:07 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 09:09:07 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 09:09:10 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:10.205 UTC [6492] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:09:10 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:10.205 UTC [6492] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 09:09:10 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 09:09:10 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 09:09:10 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:09:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:12.285 UTC [6494] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:09:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:12.285 UTC [6494] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:09:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:12.285 UTC [6494] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:09:13 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:13.273 UTC [6498] ERROR:  syntax error at or near ")" at character 52
+Jun 22 09:09:13 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:13.273 UTC [6498] STATEMENT:  INSERT INTO connector_space_ad_group_sync_details ()
+Jun 22 09:09:13 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_3_staging
+Jun 22 09:09:13 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:09:13 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:09:16 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:16.344 UTC [6502] ERROR:  syntax error at or near ")" at character 65
+Jun 22 09:09:16 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:16.344 UTC [6502] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_sync_details ()
+Jun 22 09:09:16 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_3_staging
+Jun 22 09:09:16 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:09:16 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:09:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:19.417 UTC [6506] ERROR:  syntax error at or near ")" at character 26
+Jun 22 09:09:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:19.417 UTC [6506] STATEMENT:  INSERT INTO status_logs ()
+Jun 22 09:09:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM status_logs_3_staging
+Jun 22 09:09:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn) DO UPDATE SET
+Jun 22 09:09:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:09:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:22.489 UTC [6510] ERROR:  syntax error at or near ")" at character 53
+Jun 22 09:09:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:22.489 UTC [6510] STATEMENT:  INSERT INTO connector_space_ad_person_sync_details ()
+Jun 22 09:09:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_3_staging
+Jun 22 09:09:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:09:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:09:38 SAOIDM06 postgres[1167110]: 2026-06-22 01:09:38.022 UTC [9] LOG:  checkpoint complete: wrote 3064 buffers (18.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=269.880 s, sync=0.010 s, total=269.893 s; sync files=166, longest=0.001 s, average=0.001 s; distance=21411 kB, estimate=21845 kB; lsn=1F7/65936058, redo lsn=1F7/648108E0
+Jun 22 09:10:00 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:10:00 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:10:00 SAOIDM06 setroubleshoot[1224400]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:10:00 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2899.service.
+Jun 22 09:10:01 SAOIDM06 SetroubleshootPrivileged.py[1224423]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:10:01 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Created slice User Slice of UID 0.
+Jun 22 09:10:01 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:01 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Starting User Runtime Directory /run/user/0...
+Jun 22 09:10:01 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Finished User Runtime Directory /run/user/0.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Starting User Manager for UID 0...
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Queued start job for default target Main User Target.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Created slice User Application Slice.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Mark boot as successful after the user session has run 2 minutes was skipped because of an unmet condition check (ConditionUser=!@system).
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Started Daily Cleanup of User's Temporary Directories.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Reached target Paths.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Reached target Timers.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Starting D-Bus User Message Bus Socket...
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: PipeWire PulseAudio was skipped because of an unmet condition check (ConditionUser=!root).
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Listening on PipeWire Multimedia System Sockets.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Starting Create User's Volatile Files and Directories...
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Listening on D-Bus User Message Bus Socket.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Reached target Sockets.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Finished Create User's Volatile Files and Directories.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Reached target Basic System.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Reached target Main User Target.
+Jun 22 09:10:01 SAOIDM06 systemd[1224438]: Startup finished in 124ms.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started User Manager for UID 0.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started Session 4706 of User root.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started Session 4707 of User root.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started Session 4708 of User root.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started Session 4709 of User root.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: Started Session 4710 of User root.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: session-4710.scope: Deactivated successfully.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: session-4708.scope: Deactivated successfully.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: session-4707.scope: Deactivated successfully.
+Jun 22 09:10:01 SAOIDM06 systemd[1]: session-4706.scope: Deactivated successfully.
+Jun 22 09:10:03 SAOIDM06 systemd[1]: session-4709.scope: Deactivated successfully.
+Jun 22 09:10:05 SAOIDM06 NetworkManager[999]: <info>  [1782090605.9140] device (eth0): carrier: link connected
+Jun 22 09:10:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:08.050 UTC [9] LOG:  checkpoint starting: time
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:10:10 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:11 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:10:11 SAOIDM06 setroubleshoot[1224400]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:10:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:12.308 UTC [6514] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:10:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:12.308 UTC [6514] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:10:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:12.308 UTC [6514] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:10:13 SAOIDM06 systemd[1]: Stopping User Manager for UID 0...
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Activating special unit Exit the Session...
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped target Main User Target.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped target Basic System.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped target Paths.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped target Sockets.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped target Timers.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped Daily Cleanup of User's Temporary Directories.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Closed D-Bus User Message Bus Socket.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Closed PipeWire Multimedia System Sockets.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Stopped Create User's Volatile Files and Directories.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Removed slice User Application Slice.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Reached target Shutdown.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Finished Exit the Session.
+Jun 22 09:10:13 SAOIDM06 systemd[1224438]: Reached target Exit the Session.
+Jun 22 09:10:13 SAOIDM06 systemd[1]: user@0.service: Deactivated successfully.
+Jun 22 09:10:13 SAOIDM06 systemd[1]: Stopped User Manager for UID 0.
+Jun 22 09:10:13 SAOIDM06 systemd[1]: Stopping User Runtime Directory /run/user/0...
+Jun 22 09:10:13 SAOIDM06 systemd[1]: run-user-0.mount: Deactivated successfully.
+Jun 22 09:10:14 SAOIDM06 systemd[1]: user-runtime-dir@0.service: Deactivated successfully.
+Jun 22 09:10:14 SAOIDM06 systemd[1]: Stopped User Runtime Directory /run/user/0.
+Jun 22 09:10:14 SAOIDM06 systemd[1]: Removed slice User Slice of UID 0.
+Jun 22 09:10:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:19.260 UTC [6517] ERROR:  syntax error at or near ")" at character 47
+Jun 22 09:10:19 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:19.260 UTC [6517] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 09:10:19 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 09:10:19 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:10:19 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:10:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2899.service: Deactivated successfully.
+Jun 22 09:10:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:10:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:22.519 UTC [6521] ERROR:  syntax error at or near ")" at character 60
+Jun 22 09:10:22 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:22.519 UTC [6521] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 09:10:22 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 09:10:22 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:10:22 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:10:25 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:25.592 UTC [6525] ERROR:  syntax error at or near ")" at character 48
+Jun 22 09:10:25 SAOIDM06 postgres[1167110]: 2026-06-22 01:10:25.592 UTC [6525] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 09:10:25 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 09:10:25 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:10:25 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:11:00 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:11:00 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:11:00 SAOIDM06 setroubleshoot[1224569]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:11:00 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2900.service.
+Jun 22 09:11:01 SAOIDM06 SetroubleshootPrivileged.py[1224578]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:11:01 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:11:01 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:11:01 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:11:01 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:11:10 SAOIDM06 setroubleshoot[1224569]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:11:10 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:11:10 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:11:11 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 696aef78-7edf-42b4-8e75-f92d920b4f41
+Jun 22 09:11:11 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the shm directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:11:11 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:11:11 SAOIDM06 setroubleshoot[1224569]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /var/lib/containers/storage/overlay-containers/29c322ee3733b9d9f255174b9671f9cf585b40ff22393043ea18dd7c3c9e01b3/userdata/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:11:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:11:12.336 UTC [6559] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:11:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:11:12.336 UTC [6559] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:11:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:11:12.336 UTC [6559] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:11:21 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2900.service: Deactivated successfully.
+Jun 22 09:11:21 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:12:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:02.490 UTC [6567] ERROR:  syntax error at or near ")" at character 47
+Jun 22 09:12:02 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:02.490 UTC [6567] STATEMENT:  INSERT INTO connector_space_ad_group_details ()
+Jun 22 09:12:02 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_group_details_1_staging
+Jun 22 09:12:02 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:12:02 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:12:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:05.562 UTC [6571] ERROR:  syntax error at or near ")" at character 60
+Jun 22 09:12:05 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:05.562 UTC [6571] STATEMENT:  INSERT INTO connector_space_ad_organizationalunit_details ()
+Jun 22 09:12:05 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_organizationalunit_details_1_staging
+Jun 22 09:12:05 SAOIDM06 postgres[1167110]: #011ON CONFLICT (ou, placeholder) DO UPDATE SET
+Jun 22 09:12:05 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:12:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:08.634 UTC [6576] ERROR:  syntax error at or near ")" at character 48
+Jun 22 09:12:08 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:08.634 UTC [6576] STATEMENT:  INSERT INTO connector_space_ad_person_details ()
+Jun 22 09:12:08 SAOIDM06 postgres[1167110]: #011SELECT  FROM connector_space_ad_person_details_1_staging
+Jun 22 09:12:08 SAOIDM06 postgres[1167110]: #011ON CONFLICT (cn, placeholder) DO UPDATE SET
+Jun 22 09:12:08 SAOIDM06 postgres[1167110]: #011;
+Jun 22 09:12:11 SAOIDM06 NetworkManager[999]: <info>  [1782090731.3381] agent-manager: agent[13937283a3396251,:1.99/org.gnome.Shell.NetworkAgent/1002]: agent registered
+Jun 22 09:12:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:12.364 UTC [6578] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:12:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:12.364 UTC [6578] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:12:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:12:12.364 UTC [6578] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:12:50 SAOIDM06 systemd[1]: Starting SETroubleshoot daemon for processing new SELinux denial logs...
+Jun 22 09:12:50 SAOIDM06 systemd[1]: Started SETroubleshoot daemon for processing new SELinux denial logs.
+Jun 22 09:12:50 SAOIDM06 setroubleshoot[1225006]: failed to retrieve rpm info for path '/dev/shm':
+Jun 22 09:12:50 SAOIDM06 systemd[1]: Started dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2901.service.
+Jun 22 09:12:51 SAOIDM06 SetroubleshootPrivileged.py[1225015]: failed to retrieve rpm info for path '/var/lib/selinux/targeted/active/modules/400/oa_agent':
+Jun 22 09:12:51 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l f3f8c007-38c3-49be-aeff-189b1b31934f
+Jun 22 09:12:51 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:12:51 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 8369902c-ae36-4ef9-a327-cd1594083b71
+Jun 22 09:12:51 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:13:00 SAOIDM06 setroubleshoot[1225006]: failed to retrieve rpm info for path '/var/lib/containers/storage/overlay':
+Jun 22 09:13:00 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay. For complete SELinux messages run: sealert -l 5d9c72b9-124b-4a97-badc-76b355b4c15d
+Jun 22 09:13:00 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from search access on the directory /var/lib/containers/storage/overlay.#012#012*****  Plugin restorecon (99.5 confidence) suggests   ************************#012#012If you want to fix the label. #012/var/lib/containers/storage/overlay default label should be container_ro_file_t.#012Then you can run restorecon. The access attempt may have been stopped due to insufficient permissions to access a parent directory in which case try to change the following command accordingly.#012Do#012# /sbin/restorecon -v /var/lib/containers/storage/overlay#012#012*****  Plugin catchall (1.49 confidence) suggests   **************************#012#012If you believe that perfd should be allowed search access on the overlay directory by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:13:01 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm. For complete SELinux messages run: sealert -l 54362c65-69d2-43ed-b561-f3794ede369b
+Jun 22 09:13:01 SAOIDM06 setroubleshoot[1225006]: SELinux is preventing /opt/perf/bin/perfd from getattr access on the filesystem /dev/shm.#012#012*****  Plugin catchall (100. confidence) suggests   **************************#012#012If you believe that perfd should be allowed getattr access on the shm filesystem by default.#012Then you should report this as a bug.#012You can generate a local policy module to allow this access.#012Do#012allow this access for now by executing:#012# ausearch -c 'perfd' --raw | audit2allow -M my-perfd#012# semodule -X 300 -i my-perfd.pp#012
+Jun 22 09:13:06 SAOIDM06 NetworkManager[999]: <info>  [1782090786.3940] device (eth1): carrier: link connected
+Jun 22 09:13:11 SAOIDM06 systemd[1]: dbus-:1.1-org.fedoraproject.SetroubleshootPrivileged@2901.service: Deactivated successfully.
+Jun 22 09:13:11 SAOIDM06 systemd[1]: setroubleshootd.service: Deactivated successfully.
+Jun 22 09:13:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:12.393 UTC [6588] WARNING:  database "postgres" has a collation version mismatch
+Jun 22 09:13:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:12.393 UTC [6588] DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.41.
+Jun 22 09:13:12 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:12.393 UTC [6588] HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+Jun 22 09:13:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:15.833 UTC [6592] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:13:15 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:15.833 UTC [6592] STATEMENT:  INSERT INTO audit_logs ()
+Jun 22 09:13:15 SAOIDM06 postgres[1167110]: #011SELECT  FROM audit_logs_3_staging
+Jun 22 09:13:15 SAOIDM06 postgres[1167110]: #011ON CONFLICT (id) DO NOTHING;
+Jun 22 09:13:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:18.906 UTC [6597] ERROR:  syntax error at or near ")" at character 25
+Jun 22 09:13:18 SAOIDM06 postgres[1167110]: 2026-06-22 01:13:18.906 UTC [6597] STATEMENT:  INSERT INTO event_logs ()
+Jun 22 09:13:18 SAOIDM06 postgres[1167110]: #011SELECT  FROM event_logs_3_staging
+Jun 22 09:13:18 SAOIDM06 postgres[1167110]: #011ON CONFLICT (region, jobname, dn, exceptionhash) DO UPDATE SET
+Jun 22 09:13:18 SAOIDM06 postgres[1167110]: #011;
