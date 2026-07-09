@@ -5,3 +5,13 @@ if ! PGPASSWORD=ceidm psql "$TARGET_CONN" -c "SELECT 1" -q --no-align -t > /dev/
   exit 0   # 用 0 而不是 1，避免 Jenkins 標記為 build failure
 fi
 echo "✅ TARGET 連線正常，開始同步"
+
+
+
+
+
+
+# DROP 加 timeout 30 秒
+if ! timeout 30 bash -c "PGPASSWORD=inidm psql \"$TARGET_CONN\" -c \"DROP TABLE IF EXISTS $STAGING_TABLE;\""; then
+  echo "⚠️ DROP TABLE timeout 或失敗，繼續下一張表"
+fi
