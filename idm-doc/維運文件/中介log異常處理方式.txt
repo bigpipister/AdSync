@@ -1,14 +1,7 @@
-echo "📤 匯出 inter 資料..."
-  # ... 原本的 if-elif-else 匯出指令不變 ...
-
-  # ==================== 🛠️ 新增：斷網與空檔案防呆檢查 ====================
-  if [ ! -s "$TMP_FILE" ]; then
-    echo "❌ [警告] 暫存檔 $TMP_FILE 為空或不存在！"
-    echo "   可能原因：來源資料庫網路不通、連線超時、或匯出失敗。"
-    echo "   ⏭️ 跳過此資料表 ($TABLE) 的同步，繼續處理下一張表。"
-    continue
-  fi
-  # =====================================================================
-
-  echo "🧪 建立 inter staging 表..."
-  # ... 後續的建立 Table 與 INSERT INTO 步驟 ...
+# 測試 TARGET 連線
+echo "🔌 測試 TARGET DB 連線..."
+if ! PGPASSWORD=ceidm psql "$TARGET_CONN" -c "SELECT 1" -q --no-align -t > /dev/null 2>&1; then
+  echo "❌ TARGET DB 連線失敗，網路可能切換中，終止本次同步"
+  exit 0   # 用 0 而不是 1，避免 Jenkins 標記為 build failure
+fi
+echo "✅ TARGET 連線正常，開始同步"

@@ -30,6 +30,8 @@ podman run -d --name pgadmin4 \
   -e TZ=Asia/Taipei \
   -e PGADMIN_DEFAULT_EMAIL=admin@cht.com.tw \
   -e PGADMIN_DEFAULT_PASSWORD=1qaz@WSX \
+  -e PGADMIN_LISTEN_ADDRESS=0.0.0.0 \
+  -e PGADMIN_LISTEN_PORT=5050 \
   -v /apps/adws/pgadmin/data:/var/lib/pgadmin:Z \
   -v /apps/adws/pgadmin/log:/var/log/pgadmin:Z \
   -v /apps/adws/pgadmin/config_distro.py:/pgadmin4/config_distro.py:Z,U \

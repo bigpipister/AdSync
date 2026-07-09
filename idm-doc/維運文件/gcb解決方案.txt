@@ -14,7 +14,7 @@ sudo find / -xdev \( -nouser -o -nogroup \) -printf '%p  uid=%u  gid=%g\n' 2>/de
 sudo find / -xdev -type d -perm -0002 -uid +999 -print
 
 (3)
-改資料目錄owner => sudo chown -R $(id -u ap0001):$(id -g ap0001) jenkins_idmdb pgadmin
+改資料目錄owner => sudo chown -R $(id -u ap0001):$(id -g ap0001) jenkins pgadmin
 建log與data目錄 並 chmod 755
 建config_distro.py 並 chmod 666
 改 start-podman-services.sh
