@@ -11,7 +11,15 @@ echo "✅ TARGET 連線正常，開始同步"
 
 
 
-# DROP 加 timeout 30 秒
-if ! timeout 30 bash -c "PGPASSWORD=inidm psql \"$TARGET_CONN\" -c \"DROP TABLE IF EXISTS $STAGING_TABLE;\""; then
-  echo "⚠️ DROP TABLE timeout 或失敗，繼續下一張表"
-fi
+PGPASSWORD=inidm timeout 100s psql "$TARGET_CONN" -c "\COPY $STAGING_TABLE FROM '$TMP_FILE' WITH CSV HEADER"
+
+# 修改為（加入 timeout 與 keepalive 偵測）
+TARGET_CONN="postgresql://inidm:inidm@10.190.4.215:5432/idmdb?connect_timeout=10&keepalives=1"
+
+加大內網db pool -> 300
+好像內網db connection 爆了
+sudo vi /apps/adws/idmdb/postgresql.conf
+ 
+max_connections = 300   改成 300
+ 
+改完  sudo /usr/local/bin/start-podman-services.sh*
