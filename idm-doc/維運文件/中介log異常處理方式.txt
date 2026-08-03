@@ -11,7 +11,7 @@ echo "✅ TARGET 連線正常，開始同步"
 
 
 
-PGPASSWORD=inidm timeout 100s psql "$TARGET_CONN" -c "\COPY $STAGING_TABLE FROM '$TMP_FILE' WITH CSV HEADER"
+PGPASSWORD=inidm timeout 60s psql "$TARGET_CONN" -c "\COPY $STAGING_TABLE FROM '$TMP_FILE' WITH CSV HEADER"
 
 # 修改為（加入 timeout 與 keepalive 偵測）
 TARGET_CONN="postgresql://inidm:inidm@10.190.4.215:5432/idmdb?connect_timeout=10&keepalives=1"
