@@ -54,7 +54,7 @@
         <dependency>
             <groupId>com.unboundid</groupId>
             <artifactId>unboundid-ldapsdk</artifactId>
-            <version>4.0.6</version>
+            <!-- 版本統一由 parent pom 的 unboundid-ldapsdk.version 控制 -->
         </dependency>
 
         <dependency>

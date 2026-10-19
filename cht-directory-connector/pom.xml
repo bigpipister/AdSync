@@ -32,6 +32,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <!--spring-boot.version>3.3.3</spring-boot.version-->
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <!-- 固定 UnboundID 版本，覆蓋 Spring Boot BOM，避免升級 Spring Boot 時連帶變動 -->
+        <unboundid-ldapsdk.version>6.0.11</unboundid-ldapsdk.version>
         <skipTests>true</skipTests>
     </properties>
 
