@@ -10,6 +10,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "spring.ldap")
 public class LDAPProperties {
 
+    // 可設定多台，以逗號分隔，排前面的優先 (ex: 10.22.242.39,10.22.242.40)
     protected String host;
 
     protected int port;
@@ -21,4 +22,7 @@ public class LDAPProperties {
     protected String password;
 
     protected int poolSize;
+
+    // 連線逾時 (毫秒)，逾時即換下一台
+    protected int connectTimeoutMs = 5000;
 }
