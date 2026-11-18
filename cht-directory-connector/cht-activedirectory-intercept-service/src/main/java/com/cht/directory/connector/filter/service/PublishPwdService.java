@@ -31,6 +31,15 @@ public class PublishPwdService {
     @Value("${server.logRegion:inner}")
     private String region;
 
+    // 加密用 jceks 路徑；未設定時沿用 Windows DC 上的預設路徑（容器/Linux 測試環境請以設定覆蓋）
+    private static final String DEFAULT_FILTER_JCEKS_PATH = "C:\\AdPwdSync\\adws.jceks";
+
+    @Value("${kms.client.jceks.filter-path:}")
+    private String filterJceksPath;
+
+    @Value("${kms.client.jceks.password:1qaz@WSX}")
+    private String jceksPassword;
+
     @Autowired
     ConnectorSpaceAdPersonDetailsRepository connectorSpaceAdPersonDetailsRepository;
 
@@ -64,7 +73,9 @@ public class PublishPwdService {
             long startTime = System.currentTimeMillis();
             // 加密密碼
             byte pwdArray[] = DataUtils.toQuoteUnicode(message.get("new_password"));
-            JsonWebKey key = DataUtils.loadKeyFromFile(new File("C:\\AdPwdSync\\adws.jceks"), "1qaz@WSX".toCharArray());
+            String jceksPath = (filterJceksPath == null || filterJceksPath.isBlank())
+                    ? DEFAULT_FILTER_JCEKS_PATH : filterJceksPath;
+            JsonWebKey key = DataUtils.loadKeyFromFile(new File(jceksPath), jceksPassword.toCharArray());
             encryptedPwd = DataUtils.encrypt(key, message.get("user_name"), pwdArray);
             // 將密碼 hash
             hashPwd = DataUtils.hash(pwdArray);
