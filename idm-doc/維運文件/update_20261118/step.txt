@@ -1,0 +1,60 @@
+正式環境更新步驟（每個站台的內網、外網、中介主機都要做）
+0. 先備份（整個 workspace，含 plugins、activedirectory_sync、job 設定、帳號、SMTP 設定）
+   以 root（sudo）執行，-p 保留檔案擁有者與權限；先停 Jenkins 避免打包時有 job 在寫檔
+
+
+df -h /apps                                   # 確認空間足夠
+podman stop jenkins
+mkdir -p /apps/adws/backup
+tar -cpzf /apps/adws/backup/jenkins_workspace_$(date +%F).tgz -C /apps/adws/jenkins workspace
+ls -lh /apps/adws/backup/
+   打包完不需手動啟動 Jenkins，下一步 start-podman-services.sh 會用新 image 重建 container。
+1. 換 Jenkins image（一定要先做）
+
+
+podman load -i jenkins.oci
+/usr/local/bin/start-podman-services.sh     # 重建 container
+podman exec jenkins java -version           # 應為 Corretto-21.0.13.1.2
+podman logs jenkins 2>&1 | grep -cE 'SEVERE|Failed Loading plugin'   # 應為 0
+舊的 plugin 會在啟動時自動被 image 裡的版本覆蓋。
+換之前先比對 plugin 清單：如果正式環境有 plugins.txt 以外的 plugin，那些不會被更新，可能會載入失敗。
+
+ls /apps/adws/jenkins/workspace/plugins/*.jpi | xargs -n1 basename | sed 's/.jpi$//' | sort > /tmp/prod.txt
+sort plugins.txt | diff /tmp/prod.txt -     # 有出現 < 開頭的行，就是 image 裡沒有的 plugin
+中介主機也要換。 中介的 job 只用 psql，不跑 jar，但它的 Jenkins image 裡一樣有有弱點的 JDK。
+2. 換 jar（內網和外網主機）
+
+
+cp cht-activedirectory-sync-connector-1.0.jar /apps/adws/jenkins/workspace/activedirectory_sync/
+application-XXXin/ex.yml 和 adws.jceks 都不用改。
+不能比第 1 步先做。 新 jar 是 Java 21 編譯的，放在 JDK 17 的 Jenkins 上會出現 UnsupportedClassVersionError，所有 job 都會失敗。
+3. 驗證（失敗就依文件最後「還原」處理，此時舊 image 還在）
+
+在 Jenkins UI 手動執行一次「擷取內網/外網AD資料」，確認成功，並且 status_logs 有寫入。
+寄信：管理 Jenkins → System → Test configuration by sending test e-mail，或手動執行「系統檢測」。
+
+4. 確認正常後才刪除舊 image
+
+
+podman images        # 找出舊的 jenkins image（<none> 或舊的 ID）
+podman rmi <舊 image ID>
+弱點掃描通常會掃主機上所有的 image，不只是正在執行的。舊 image 沒刪掉的話，可能還是會掃出 CVE-2026-114938。
+刪除後再重新跑一次弱點掃描。
+要另外確認的兩件事
+PostgreSQL： 如果正式環境也要換成新 build 的 postgres:16.12 image，換完後每個 DB 都要用 superuser 執行一次：
+
+
+REINDEX DATABASE idmdb;  ALTER DATABASE idmdb     REFRESH COLLATION VERSION;
+REINDEX DATABASE postgres; ALTER DATABASE postgres  REFRESH COLLATION VERSION;
+REINDEX DATABASE template1; ALTER DATABASE template1 REFRESH COLLATION VERSION;
+如果正式環境已經在跑 16.12 的 image，可以看 PG log 裡有沒有 collation version mismatch；有的話一樣要執行上面的指令。只換 Jenkins、PG 不動的話，這步可以跳過。
+
+還原（升級失敗時）
+   需要舊 image：確認新版正常前不要刪舊 image；若已刪除，先 podman load -i jenkins_jdk17.oci 載回
+
+
+podman rm -f jenkins
+podman tag <舊 image ID> docker.io/jenkins/jenkins:latest   # tag 指回舊 image
+rm -rf /apps/adws/jenkins/workspace
+tar -xpzf /apps/adws/backup/jenkins_workspace_YYYY-MM-DD.tgz -C /apps/adws/jenkins
+/usr/local/bin/start-podman-services.sh

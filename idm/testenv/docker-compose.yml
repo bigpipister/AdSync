@@ -1,0 +1,135 @@
+# AdSync 封閉測試環境（模擬 B01：內網 intbca / 外網 entbca / 中介）
+# 容器 IP 沿用正式環境，Jenkins job 與 yml 中的 IP 不需修改
+#   內網 10.23.88.0/24 : samba-in(AD) .105 / pg-in .98 / jenkins .10
+#   外網 10.22.242.0/24: samba-ex(AD) .39  / pg-ex .98 / jenkins .10
+#   中介 : pg-ce 與 jenkins 共用網路命名空間 → job 中的 localhost:5432 即中介 DB（同正式 podman --network=host）
+# 內/外網為 internal 網路：互不相通、也不能連外；僅 jenkins 另接 mgmt 供 UI 與外掛下載
+name: adsync
+
+x-common: &common
+  restart: "no"
+  environment: &tz
+    TZ: Asia/Taipei
+
+networks:
+  net-in:
+    internal: true
+    ipam: { config: [ { subnet: 10.23.88.0/24 } ] }
+  net-ex:
+    internal: true
+    ipam: { config: [ { subnet: 10.22.242.0/24 } ] }
+  mgmt: {}
+
+services:
+
+  # ---------- AD ----------
+  samba-in:
+    <<: *common
+    build: ./images/samba-ad
+    image: adsync/samba-ad:test
+    hostname: dc-in
+    cap_add: [ SYS_ADMIN ]          # samba 寫 security.NTACL xattr 需要
+    environment:
+      <<: *tz
+      REALM: INTBCA.GOV.TW
+      NETBIOS: INTBCA
+      ADMIN_PASS: "1qaz@WSX"
+      SEED_DIR: /seed
+      SEED_USER_PASS: "!QAZxsw2#EDC"
+      BIND_USER_DN: "CN=B01IDMAdmin2,OU=AP,DC=intbca,DC=gov,DC=tw"
+      BIND_USER_PASS: "1qaz@WSX"
+    volumes:
+      - ./volumes/samba-in:/var/lib/samba
+      - ./seed/ad:/seed:ro
+    networks:
+      net-in: { ipv4_address: 10.23.88.105 }
+
+  samba-ex:
+    <<: *common
+    image: adsync/samba-ad:test
+    depends_on: [ samba-in ]        # 共用 image，等 samba-in build 完
+    hostname: dc-ex
+    cap_add: [ SYS_ADMIN ]
+    environment:
+      <<: *tz
+      REALM: ENTBCA.GOV.TW
+      NETBIOS: ENTBCA
+      ADMIN_PASS: "1qaz@WSX3edc"
+      SEED_DIR: /seed               # 外網 AD 為內網的同步結果：以同一份 CSV 換 domain 匯入
+      SEED_SRC_DOMAINDN: "DC=intbca,DC=gov,DC=tw"
+      SEED_USER_PASS: "!QAZxsw2#EDC"
+      BIND_USER_DN: "CN=CHTIDMAdmin,OU=ap,DC=entbca,DC=gov,DC=tw"
+      BIND_USER_PASS: "1qaz@WSX3edc"
+    volumes:
+      - ./volumes/samba-ex:/var/lib/samba
+      - ./seed/ad:/seed:ro
+    networks:
+      net-ex: { ipv4_address: 10.22.242.39 }
+
+  # ---------- DB ----------
+  pg-in:
+    <<: *common
+    build: ./images/postgres
+    image: adsync/postgres:16.12
+    volumes:
+      - ./volumes/pg-in:/var/lib/postgresql/data
+    networks:
+      net-in: { ipv4_address: 10.23.88.98 }
+
+  pg-ex:
+    <<: *common
+    image: adsync/postgres:16.12
+    depends_on: [ pg-in ]
+    volumes:
+      - ./volumes/pg-ex:/var/lib/postgresql/data
+    networks:
+      net-ex: { ipv4_address: 10.22.242.98 }
+
+  pg-ce:
+    <<: *common
+    image: adsync/postgres:16.12
+    depends_on: [ pg-in, jenkins ]
+    network_mode: "service:jenkins"
+    volumes:
+      - ./volumes/pg-ce:/var/lib/postgresql/data
+
+  # ---------- Jenkins（本次測試主體）----------
+  jenkins:
+    <<: *common
+    build: ./images/jenkins
+    image: adsync/jenkins:lts-jdk21-corretto
+    hostname: jenkins
+    environment:
+      <<: *tz
+      JAVA_OPTS: "-Xmx768m -Djenkins.install.runSetupWizard=false"
+    volumes:
+      - ./volumes/jenkins_home:/var/jenkins_home
+      - ./app/activedirectory_sync:/var/jenkins_home/activedirectory_sync
+    ports:
+      - "127.0.0.1:18080:8080"      # 只綁本機，從外部請用 ssh -L 18080:127.0.0.1:18080
+    networks:
+      net-in: { ipv4_address: 10.23.88.10 }
+      net-ex: { ipv4_address: 10.22.242.10 }
+      mgmt: {}
+
+  # ---------- 密碼攔截服務（正式環境裝在 DC 上，DLL POST 127.0.0.1:3888/adws/）----------
+  # 與 samba-in 共用網路命名空間 = 同一台 DC；測試時以 curl 模擬 DLL
+  interceptor-in:
+    <<: *common
+    image: adsync/jenkins:lts-jdk21-corretto   # 共用同一份已修補的 JDK
+    profiles: [ pwd ]
+    depends_on: [ samba-in, pg-in ]
+    network_mode: "service:samba-in"
+    user: "1000:1000"
+    # logback 寫死 C:\AdPwdSync\logback.log，Linux 上視為工作目錄下的檔名 → 工作目錄需可寫
+    working_dir: /data
+    entrypoint: [ "java", "-Xmx256m", "-jar", "/app/cht-activedirectory-intercept-service-1.0.jar",
+                  "--server.logRegion=inner",
+                  "--log.datasource.jdbc-url=jdbc:postgresql://10.23.88.98:5432/idmdb",
+                  "--web.datasource.jdbc-url=jdbc:postgresql://10.23.88.98:5432/idmdb",
+                  "--h2.datasource.jdbc-url=jdbc:h2:file:/data/h2",
+                  "--kms.client.jceks.name=/app/adws.jceks",
+                  "--kms.client.jceks.filter-path=/app/adws.jceks" ]
+    volumes:
+      - ./app/interceptor:/app:ro
+      - ./volumes/interceptor-in:/data

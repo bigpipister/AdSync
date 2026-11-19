@@ -1,0 +1,300 @@
+# 測試用：模擬 Exchange schema 擴充（正式 AD 為 Exchange 原生屬性；此處用私有 OID，程式以屬性名稱存取不受影響）
+# homeMDB 正式為 DN 語法，測試環境改用字串以免需要 Exchange 設定物件存在
+
+dn: CN=ms-Exch-Extension-Attribute-1,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-1
+lDAPDisplayName: extensionAttribute1
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.1
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-2,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-2
+lDAPDisplayName: extensionAttribute2
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.2
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-3,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-3
+lDAPDisplayName: extensionAttribute3
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.3
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-4,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-4
+lDAPDisplayName: extensionAttribute4
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.4
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-5,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-5
+lDAPDisplayName: extensionAttribute5
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.5
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-6,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-6
+lDAPDisplayName: extensionAttribute6
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.6
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-7,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-7
+lDAPDisplayName: extensionAttribute7
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.7
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-8,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-8
+lDAPDisplayName: extensionAttribute8
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.8
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-9,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-9
+lDAPDisplayName: extensionAttribute9
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.9
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-10,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-10
+lDAPDisplayName: extensionAttribute10
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.10
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-11,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-11
+lDAPDisplayName: extensionAttribute11
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.11
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-12,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-12
+lDAPDisplayName: extensionAttribute12
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.12
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-13,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-13
+lDAPDisplayName: extensionAttribute13
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.13
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-14,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-14
+lDAPDisplayName: extensionAttribute14
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.14
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Extension-Attribute-15,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Extension-Attribute-15
+lDAPDisplayName: extensionAttribute15
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.15
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn: CN=ms-Exch-Home-MDB,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+cn: ms-Exch-Home-MDB
+lDAPDisplayName: homeMDB
+attributeID: 1.2.840.113556.1.8000.2554.48219.1.100
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE
+rangeLower: 1
+rangeUpper: 2048
+searchFlags: 0
+showInAdvancedViewOnly: TRUE
+
+dn:
+changetype: modify
+add: schemaUpdateNow
+schemaUpdateNow: 1
+-
+
+#--SPLIT--
+dn: CN=AdSync-Exch-Custom-Attributes,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: add
+objectClass: top
+objectClass: classSchema
+cn: AdSync-Exch-Custom-Attributes
+lDAPDisplayName: adsyncExchCustomAttributes
+governsID: 1.2.840.113556.1.8000.2554.48219.2.1
+objectClassCategory: 3
+subClassOf: top
+mayContain: extensionAttribute1
+mayContain: extensionAttribute2
+mayContain: extensionAttribute3
+mayContain: extensionAttribute4
+mayContain: extensionAttribute5
+mayContain: extensionAttribute6
+mayContain: extensionAttribute7
+mayContain: extensionAttribute8
+mayContain: extensionAttribute9
+mayContain: extensionAttribute10
+mayContain: extensionAttribute11
+mayContain: extensionAttribute12
+mayContain: extensionAttribute13
+mayContain: extensionAttribute14
+mayContain: extensionAttribute15
+mayContain: homeMDB
+
+dn:
+changetype: modify
+add: schemaUpdateNow
+schemaUpdateNow: 1
+-
+
+#--SPLIT--
+dn: CN=User,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: modify
+add: auxiliaryClass
+auxiliaryClass: adsyncExchCustomAttributes
+-
+
+dn: CN=Group,CN=Schema,CN=Configuration,@DOMAINDN@
+changetype: modify
+add: auxiliaryClass
+auxiliaryClass: adsyncExchCustomAttributes
+-
+
+dn:
+changetype: modify
+add: schemaUpdateNow
+schemaUpdateNow: 1
+-
