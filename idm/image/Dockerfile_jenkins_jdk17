@@ -1,0 +1,37 @@
+# 使用官方 Jenkins LTS + JDK 17 作為基底
+FROM jenkins/jenkins:lts-jdk17
+
+# 使用 root 安裝套件
+USER root
+
+# 安裝 PostgreSQL client
+RUN apt-get update && \
+    apt-get install -y postgresql-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 安裝外掛：基本寄信 + 進階郵件（HTML、範本、更彈性觸發）
+RUN jenkins-plugin-cli --plugins \
+    "mailer" \
+    "email-ext"
+
+RUN set -eux; \
+    # 這三個是帳務檔，容器內通常不需要；刪掉最乾脆
+    for f in /var/log/lastlog /var/log/wtmp /var/log/btmp; do \
+      [ -e "$f" ] && rm -f "$f" || true; \
+    done; \
+  
+    # 將 shadow 相關檔改為 root 群組並收緊權限（避免 gid=42）
+    for f in /etc/shadow /etc/shadow- /etc/gshadow /etc/gshadow- \
+             /usr/sbin/unix_chkpwd /sbin/unix_chkpwd \
+             /usr/bin/chage /usr/bin/expiry; do \
+      [ -e "$f" ] && chgrp 0 "$f" && chmod 640 "$f" || true; \
+    done && \
+
+    # 清各發行版快取（依存在與否清）：
+    rm -rf /var/cache/apt/archives /var/cache/apt/lists \
+           /var/cache/dnf /var/cache/yum \
+           /var/cache/apk /lib/apk/db/* || true
+
+# 回到 jenkins 使用者執行
+USER jenkins
